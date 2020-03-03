@@ -29,6 +29,7 @@ int main(){
     std::cout << max<double>(3,7.0);
     std::cout << max(3, 7.0) << std::endl;
     std::cout << max<double>(3, 7.0) << std::endl;
+    std::cout << max<char>('g', 'e') << std::endl;
     return 0;
 }
 ```
