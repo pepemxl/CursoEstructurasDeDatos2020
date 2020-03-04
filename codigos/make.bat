@@ -1,0 +1,1 @@
+g++ -std=c++11 clase_01_ejercicio_01.cpp -o run.exe
