@@ -46,4 +46,18 @@ std::vector<double> myvector;
 template<typename T> constexpr T pi = T(3.141592653589793238462643383L);
 ```
 
+Nota: El especificador ```constexpr```  aparecio apartir de c++11 y le dice al compilador que la variable será  determinada en
+tiempo de compilaci&oacute;n. Su uso es para decirle al compilador que se trata de una declaracion ```inline```, lo cual aumenta el performance, sin embargo vuelve m&aacute;s lenta la compilaci&oacute;n. (Revisar referencias para conocer mejor su uso, tiene ciertas condiciones especiales que dependen de la versi&oacute;n de C++.)
+
+
+# Ejercicios de clase
+
+- Crear una funci&oacute;n llamada swap para intercambiar el valor de dos variables.
+- Crear un buble sort para ordernar cualesquiera dos
+n&uacute;mero usando templates.
+- Crear una clase Array usando templates
+    - Debera contener un constructor al cual se le pasar&aacute;n dos par&aacute;metros:
+        - el primero un arreglo de n&uacute;meros.
+        - el segundo el tamaño del arreglo
+
 
