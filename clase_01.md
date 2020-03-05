@@ -47,7 +47,7 @@ template<typename T> constexpr T pi = T(3.141592653589793238462643383L);
 ```
 
 Nota: El especificador ```constexpr```  aparecio apartir de c++11 y le dice al compilador que la variable será  determinada en
-tiempo de compilaci&oacute;n. Su uso es para decirle al compilador que se trata de una declaracion ```inline```, lo cual aumenta el performance, sin embargo vuelve m&aacute;s lenta la compilaci&oacute;n. (Revisar referencias para conocer mejor su uso, tiene ciertas condiciones especiales que dependen de la versi&oacute;n de C++.)
+tiempo de compilaci&oacute;n. Su uso es para decirle al compilador que se trata de una declaraci&oacute;n al estilo ```inline```, lo cual aumenta el performance, sin embargo vuelve m&aacute;s lenta la compilaci&oacute;n. (Revisar referencias para conocer mejor su uso, tiene ciertas condiciones especiales que dependen de la versi&oacute;n de C++.)
 
 
 # Ejercicios de clase
