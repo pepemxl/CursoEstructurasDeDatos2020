@@ -1,0 +1,1 @@
+g++ -std=c++11 clase_02_practica_01.cpp -o run.exe
