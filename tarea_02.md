@@ -1,8 +1,8 @@
 # Tarea \#2 (Entregar antes de 19/03/2020)
 ## Curso de Estructura de Datos
 
-- Problema 1.- Crear una clase gen&eacute;rica para crear stacks, que tendr&aacute; los siguientes m&eacute;todos:
-    - Contructor (Inicializa el stack con elemento head)
+- Problema 1.- Crear una clase gen&eacute;rica para crear un stack con listas simplemente ligadas, que tendr&aacute; los siguientes m&eacute;todos:
+    - Contructor (Inicializa la lista con un elemento head)
     - PushBack (Inserta elemento al final)
     - PushFront (Inserta elemento al inicio)
     - Clear (Limpia/borra todos los elementos)
@@ -21,7 +21,7 @@ class stack{
     Node<T> *head;
 };
 ```
-- Problema 2.- Crear una clase gen&eacute;rica para crear stacks, que tendr&aacute; los siguientes m&eacute;todos:
+- Problema 2.- Crear una clase gen&eacute;rica para crear stacks con listas doblemente ligadas, que tendr&aacute; los siguientes m&eacute;todos:
     - Contructor (Inicializa el stack con elemento head)
     - PushBack (Inserta elemento al final)
     - PushFront (Inserta elemento al inicio)

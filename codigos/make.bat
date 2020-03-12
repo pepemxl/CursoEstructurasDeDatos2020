@@ -1,1 +1,1 @@
-g++ -std=c++11 clase_01_ejercicio_03.cpp -o run.exe
+g++ -std=c++11 clase_02_ejercicio_03.cpp -o run.exe

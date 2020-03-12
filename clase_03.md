@@ -1,39 +1,51 @@
 # Estructuras de Datos
 
+## Preliminares (Parte de su curso de algoritmos, por lo cual solo será un breve recordatorio/introducción)
+### Análisis asintótico de  un algoritmo
+En el análisis matemático, el análisis asintótico de un algoritmo es un método/manera de definir el límite matemático del rendimiento en tiempo de ejecución de un algoritmo. Con esto podemos considerar los siguientes tres casos/escenarios:
+- caso promedio de un algoritmo,
+- el mejor caso de un algoritmo y por último
+- el peor caso de un algoritmo.
+
+Se utiliza para calcular matemáticamente el tiempo de ejecución de cualquier operación dentro de un algoritmo.
+
+### Notaciones asintóticas
+Las anotaciones asintóticas comúnmente utilizadas para calcular la complejidad del tiempo de ejecución de un algoritmo son:
+
+- Big oh (Ο)
+- Omega (Ω)
+- Theta (θ)
+
+### Big oh  (O)
+Es la forma formal de expresar el límite superior del tiempo de ejecución de un algoritmo. Mide el peor caso de complejidad de tiempo o la mayor cantidad de tiempo que el algoritmo tarda en completar su operación.
+
+### Omega (&Omega;)
+Es la forma formal de representar el límite inferior del tiempo de ejecución de un algoritmo. Mide la menor cantidad de tiempo que un algoritmo puede tardar en completarse o la mejor complejidad de tiempo del caso.
+
+### Theta (&Theta;)
+Es la forma formal de expresar tanto el límite superior como el límite inferior del tiempo de ejecución de un algoritmo.
+
 ## Estructras de datos lineales (Continuaci&oacute;n...)
 
-## Stack (Pila)
+## Listas Ligadas (Sesión de práctica)
 
-Un stack o LIFO (last in, first out) es un tipo de dato abstracto que sirve como una colecci&oacute;n de elementos, que tiene dos operaciones.
-- `push` agrega un elemento a la colecci&oacute;n .
-- `pop` remueve el &uacute;ltimo elemento que fue agregado.
+Abrir un nuevo proyecto de codebocks y copiar contenido del ejercicio [ejercicio 03](./codigos/clase_02_ejercicio_03.cpp)
 
-Ambas operaciones traajan sobre el mismo elemento que es el que se encuentra al final y mas arriba en el stack (pila).
+Como pueden ver es el último ejercicio de la clase pasada, la única diferencia es que está implementado con plantillas.
 
-Para implementar una pila podemos utilizar tanto un arreglo como una lista ligada.
+El día de hoy agregaremos la siguiente funcionalidad:
+- inserción al inicio: `PushFront(head, val)`
+- inserción de nodo en posición arbitraria: `Insert(head, val)`
+- borrar nodo al inicio y retornar valor dentro de nodo: `PopFront(head)`
+- borrar nodo al final y retornar valor dentro de nodo: `PopBack(head)`
+- borrar nodo en posicion arbitraria: `Delete(head, pos)`
+- crear función que regrese nodo en posición( si la posición excede el número de elemntos en la lista ligada deberá regresar `NULL`): `Position(head, pos)`
+- crear función para buscar la primer ocurrencia de un valor `val` dentro de la lista ligada: `Search(head, val)`
+- crear constructor en estructura nodo que imprima "Nodo Creado"
+- crear destructor en estructura nodo que imprima "Nodo Borrado"
+- sobrecargar operador `[]` para acceder directamente a un nodo por posición
+- sobrecargar operador `<<` para poder imprimir el contenido dentro de la estructura nodo.
 
-### Complejidad de los stacks
-Inserci&oacute;n : `O(1)`
-Borrado :  `O(1)`
-Acceso : `O(n)` [Peor de los casos]
-Tanto la inserci&oacute;n como el borrado solo se permiten al final.
 
-Uno de los usos m&aacute;s comunes de los stacks es para remover recursiones de un programa. Si recuerdan como funciona una recursi&oacute;n el &uacute;ltimo programa en ser llamado deber ser el primero en terminar. 
 
-## Queue (Colas)
 
-Una queue (cola) o FIFO (first in, first out) es un tipo de dato abstracto que sirve como una colecci&oacute;n de elementos, que tiene dos operaciones:
-- enqueue:  Agregar un elemento a la colecci&oacute;n por la parte final.
-- dequeue: Remover el elemento del inicio.
-
-Al igual que el stack se puede implementar ya sea usando arreglos o listas ligadas.
-
-### Complejidad
-Insercion : `O(1)`
-Borrado  : `O(1)`
-Acceso : `O(n)` [En el peor de los casos]
-
-Ejemplos:
-- Filas de atenci&oacute;n a clientes
-- Manejo de recurss del sistema
-- El caso particular de colas circulares es para evitar desperdiciar memoria.
