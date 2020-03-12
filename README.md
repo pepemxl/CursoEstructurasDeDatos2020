@@ -13,39 +13,39 @@ Profesor Jos&eacute; Luis Alonzo Vel&aacute;zquez
 2. Arreglos.
     1. Definición.
     2. Arreglos y punteros nativos de C.
-        2.2.1. Arreglos estáticos.
-        2.2.2. Arreglos dinámicos.
+        1. Arreglos estáticos.
+        2. Arreglos dinámicos.
     3. Una clase basada en arreglos.
-        2.3.1. Insertar un elemento en medio de dos elementos existentes.
-        2.3.2. Eliminar un elemento del arreglo.
-        2.3.3. Un método rápido para la eliminación.
-        2.3.4. Obtener el tamaño de un arreglo.
+        1. Insertar un elemento en medio de dos elementos existentes.
+        2. Eliminar un elemento del arreglo.
+        3. Un método rápido para la eliminación.
+        4. Obtener el tamaño de un arreglo.
     4. Almacenar y cargar arreglos en el disco.
     5. Usar un arreglo para almacenar datos del juego.
-        2.5.1. La clase monstruo.
-        2.5.2. Declarar un arreglo de la clase monstruo.
-        2.5.3. Agregar un monstruo al juego.
-        2.5.4. Mejorar el algoritmo de inserción.
-        2.5.5. Eliminar un monstruo del juego.
+        1. La clase monstruo.
+        2. Declarar un arreglo de la clase monstruo.
+        3. Agregar un monstruo al juego.
+        4. Mejorar el algoritmo de inserción.
+        5. Eliminar un monstruo del juego.
     6. Análisis de arreglos en los juegos.
 3. Bitvectors.
     1. ¿Qué es un Bitvector?.
     2. Una clase basada en Bitvector.
     3. Guardar rápido.
-        3.3.1. La clase jugador.
-        3.3.2. Almacenar los jugadores del juego.
-        3.3.3. Inicializar las estructuras de datos.
-        3.3.4. Modificar los atributos del jugador.
-        3.3.5. Almacenar el arreglo de jugadores al disco.
+        1. La clase jugador.
+        2. Almacenar los jugadores del juego.
+        3. Inicializar las estructuras de datos.
+        4. Modificar los atributos del jugador.
+        5. Almacenar el arreglo de jugadores al disco.
     4. Bitfields.
 4. Arreglos multidimensionales.
     1. Definición.
     2. Arreglos multidimensionales nativos.
     3. Arreglos multidimensionales dinámicos.
     4. Usar arreglos de 2D como mapas de cuadros (tilemap).
-        4.4.1. Almacenar el mapa de cuadros.
-        4.4.2. Generar el mapa de cuadros.
-        4.4.3. Dibujar el mapa de cuadros.
+        1. Almacenar el mapa de cuadros.
+        2. Generar el mapa de cuadros.
+        3. Dibujar el mapa de cuadros.
     5. Capas de mapas de cuadros.
 5. Listas ligadas.
     1. [Definición.](./clase_02.md)
