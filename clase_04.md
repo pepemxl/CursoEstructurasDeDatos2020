@@ -15,12 +15,13 @@ struct Node{
         this->data = 0;
         this->next = NULL;
     }
-    Node(T &val){
+    Node(const T &val){
         this->data = val;
         this->next = NULL;
     }
 };
 ```
+En esta estructura han sido agregados dos constructores para la estructura, el constructor por default y el constructor cuando le pasamos un valor.
 
 ## Inserción en una lista simplemente ligada al principio
 La sesi&oacute;n anterior agregamos la siguiente funcionalidad:
@@ -34,11 +35,11 @@ Node<T> *PushFront(Node<T> *ptrHead,const T &val){
     return newNode;
 }
 ```
-Hoy agregaremos mas detalles a la implementaci&oacute;n, para que sea muy claro que est&aacute; sucediendo.
+Hoy agregaremos más detalles a la implementaci&oacute;n, para que sea más claro que est&aacute; sucediendo en cada uno de los métodos.
 
-Para insertar un nuevo elemento en una lista simplemente ligada al inicio es bastante simple. Solo necesitamos hacer algunos ajustes en los enlaces de nodo. 
+Para insertar un nuevo elemento en una lista simplemente ligada al inicio es bastante simple. Solo necesitamos hacer algunos ajustes en las referencias/enlaces entre los nodos.
 
-- Allocamos el espacio para el nuevo nodo y almacenamos datos en la parte de datos del nodo. 
+- Allocamos el espacio de memoria para el nuevo nodo y almacenamos datos en la parte de datos del nodo. 
 ```
     Node<T> *newNode = new Node<T>;
     newNode->data = val;
@@ -54,14 +55,16 @@ Para insertar un nuevo elemento en una lista simplemente ligada al inicio es bas
     ptrHead = PushFront(ptrHead, val);
 ```
 
-El algoritmo ser&iacute;a descrito graficamente de la siguiente manera:
+El algoritmo  descrito graficamente ser&iacute;a de la siguiente manera:
 
 ![insertion_in_singly_linked_list_at_beginning.png](images/insertion_in_singly_linked_list_at_beginning.png)
 *Image from www.javatpoint.com*
 
+El apuntador `ptrHead` que antes apuntaba al primer elemento ahora apunta al nuevo que hemos creado, y este nuevo elemento apunta al anterior primero. Esta actualización la hacemos en el `main` en  nuestro caso, o donde viva el apuntador `ptrHead`.
 
-- inserción de nodo en posición arbitraria: `Insert(head, val)`
+- inserción de nodo en posición arbitraria: `Insert(head, val, pos)`
 ```
+    - Si la posición a insertar es la 0
 template <typename T>
 Node<T> *Insert(Node<T> *ptrHead,const T &val, int pos){
     if(pos == 0){
@@ -90,16 +93,23 @@ Node<T> *Insert(Node<T> *ptrHead,const T &val, int pos){
 }
 ```
 - borrar nodo al inicio y retornar valor dentro de nodo: `PopFront(head)`
+
+Al igual que la operación `PushFront`, `PopFront(head)` es una operación muy sencilla, donde cambiamos las referencias.
+- La función deberá retornar la nueva cabeza de la lista.
+- Recibirá un parametro extra donde pondremos el apuntador el primer elemento.
+
+![PopFront](images/deletion-in-singly-linked-list-at-beginning.png)
 ```
 template <typename T>
-Node<T>* PopFront(Node<T> *ptrHead, Node<T>* ptrPopNode){
+Node<T>* PopFront(Node<T> *ptrHead, Node<T>* &ptrPopNode){
     if (ptrHead == NULL){
         std::cout << "Lista vacia operacion no valida" << std::endl;
         return NULL;
     }
     Node<T>* newHead = ptrHead->next; 
-    std::cout << prtHead->data << std::endl;
-    return tempNode;
+    std::cout << "Primer Elemento: " << ptrHead->data << std::endl;
+    ptrPopNode = ptrHead;
+    return newHead;
 }
 ```
 - borrar nodo al final y retornar valor dentro de nodo: `PopBack(head)`
@@ -122,6 +132,7 @@ Node<T>* PopFront(Node<T> *ptrHead){
 }
 ```
 - borrar nodo en posicion arbitraria: `Delete(head, pos)`
+![Pop](images/deletion-in-singly-linked-list-after-specified-node.png)
 - crear función que regrese nodo en posición( si la posición excede el número de elemntos en la lista ligada deberá regresar `NULL`): `Position(head, pos)`
 - crear función para buscar la primer ocurrencia de un valor `val` dentro de la lista ligada: `Search(head, val)`
 - crear constructor en estructura nodo que imprima "Nodo Creado"

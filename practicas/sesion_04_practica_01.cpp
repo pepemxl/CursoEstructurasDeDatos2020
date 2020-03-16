@@ -9,12 +9,12 @@ struct Node{
     Node(){
         this->data = 0;
         this->next = NULL;
-        std::cout << "Nodo Creado" << std::endl;
+        std::cout << "Nodo creado con valor por defecto 0" << std::endl;
     }
-    Node(T &val){
+    Node(const T &val){
         this->data = val;
         this->next = NULL;
-        std::cout << "Nodo Creado" << std::endl;
+        std::cout << "Nodo creado con valor " << val << std::endl;
     }
 };
 
@@ -39,26 +39,28 @@ void PushBack(Node<T> *ptrNode, const T &val){
         return;
     }
     Node<T> *tempNode;
-    Node<T> *newNode = new Node<T>;
-    newNode->data = val;
-    newNode->next = NULL;
     tempNode = ptrNode;// Inicializamos
     while(tempNode->next != NULL){
         tempNode = tempNode->next;
     }
+    // Factorizamos codigo agregando constructor con valor inicial
+    // Node<T> *newNode = new Node<T>;
+    // newNode->data = val;
+    // newNode->next = NULL;
+    Node<T> *newNode = new Node<T>(val);
     tempNode->next = newNode;
     return;
 }
 
-
 template <typename T>
-void print(Node<T> *ptrNode){
+void Print(Node<T> *ptrNode){
     if(ptrNode == NULL){
         std::cout << " Ptr NULL" << std::endl;
         return;
     }
     Node<T> *tempNode;
     tempNode = ptrNode;
+    std::cout << "Imprimiendo lista ligada: ";
     while(tempNode != NULL){
         std::cout << tempNode->data << " ";
          tempNode = tempNode->next;
@@ -68,7 +70,7 @@ void print(Node<T> *ptrNode){
 }
 
 template <typename T>
-void clear(Node<T> *ptrNode){
+void Clear(Node<T> *ptrNode){
     if(ptrNode == NULL){
         std::cout << "Ptr NULL" << std::endl;
         return;
@@ -87,9 +89,9 @@ void clear(Node<T> *ptrNode){
 
 template <typename T>
 Node<T> *PushFront(Node<T> *ptrHead,const T &val){
-    Node<T> *newNode = new Node<T>;
-    newNode->data = val;
+    Node<T> *newNode = new Node<T>(val);
     newNode->next = ptrHead;
+    std::cout << "Nodo insertado al inicio con valor: "   << newNode->data << std::endl;
     return newNode;
 }
 
@@ -99,8 +101,9 @@ Node<T> *Insert(Node<T> *ptrHead,const T &val, int pos){
         ptrHead = PushFront(ptrHead,val);
         return ptrHead;
     }
+    // Ahora buscamos nodo en ubicación(pos>0) a remplazar(logica 0)
     int contador = 0;
-    Node<T> *tempNode = ptrHead;
+    Node<T> *tempNode = ptrHead;//creamos nodo temporal para hacer el recorrido
     Node<T> *prevNode = tempNode;
     while(tempNode != NULL && contador < pos){
         prevNode = tempNode;
@@ -108,34 +111,76 @@ Node<T> *Insert(Node<T> *ptrHead,const T &val, int pos){
         contador++;
     }
     if(contador == pos){
-        Node<T> *newNode = new Node<T>;
-        newNode->data = val;
+        std::cout << "El valor lista[" << pos <<"] es: "   << tempNode->data << std::endl;
+        std::cout << "El valor lista[prevNode] es: "       << prevNode->data << std::endl;
+        Node<T> *newNode = new Node<T>(val);
         newNode->next = tempNode;
         prevNode->next = newNode;
-        std::cout << "El valor lista[" << pos <<"] es: "   << tempNode->data << std::endl;
-        std::cout << "El valor lista[prevNode] es: "   << prevNode->data << std::endl;
     }else{
-        std::cout << "Posicion no encontrada" << std::endl;
+        std::cout << "Posición no encontrada" << std::endl;
     }
-    return tempNode;
+    return ptrHead;
 }
 
+template <typename T>
+Node<T>* PopFront(Node<T> *ptrHead, Node<T>* &ptrPopNode){
+    if (ptrHead == NULL){
+        std::cout << "Lista vacia operacion no valida" << std::endl;
+        return NULL;
+    }
+    Node<T>* newHead = ptrHead->next; 
+    std::cout << "Primer Elemento: " << ptrHead->data << std::endl;
+    ptrPopNode = ptrHead;
+    return newHead;
+}
+
+template <typename T>
+Node<T> *Pop(Node<T> *ptrHead, Node<T>* &ptrPopNode, int pos){
+    if(pos == 0){
+        ptrHead = PopFront(ptrHead, ptrPopNode);
+        return ptrHead;
+    }
+    // Ahora buscamos nodo en ubicación(pos>0) a remplazar(logica 0)
+    int contador = 0;
+    Node<T> *tempNode = ptrHead;//creamos nodo temporal para hacer el recorrido
+    Node<T> *prevNode = tempNode;
+    while(tempNode != NULL && contador < pos){
+        prevNode = tempNode;
+        tempNode = tempNode->next;
+        contador++;
+    }
+    if(contador == pos){
+        std::cout << "El valor lista[" << pos <<"] es: "   << tempNode->data << std::endl;
+        std::cout << "El valor lista[prevNode] es: "       << prevNode->data << std::endl;
+        ptrPopNode = tempNode;
+        prevNode->next = tempNode->next;
+    }else{
+        std::cout << "Posición no encontrada" << std::endl;
+    }
+    return ptrHead;
+}
 
 int main(int argc, char *argv[]){
-    Node<int> *lista;
-    lista = new Node<int>;
-    lista->data = 0;
-    lista->next = NULL;
+    Node<int> *ptrHead;// Apuntador a la cabeza de la lista
+    Node<int> *ptrTemp;// Apuntador auxiliar
+    ptrHead = new Node<int>(0);
     for(int i=1; i <= 9; ++i){
-        PushBack<int>(lista, i);
+        PushBack<int>(ptrHead, i);
     }
-    std::cout << lista->data << std::endl;
-    Node<int> *tempNode = lista->next;
-    std::cout << tempNode->data << std::endl;
-    tempNode = tempNode->next;
-    std::cout << tempNode->data << std::endl;
-    /*lista = Insert(lista, 100, 0);
-    print(lista);*/
-    clear(lista);
+    ptrHead = Insert(ptrHead, 100, 0);
+    ptrHead = Insert(ptrHead, 101, 1);
+    ptrHead = Insert(ptrHead, 102, 5);
+    Print(ptrHead);
+    std::cout << "Eliminando primer elemento ... "<< std::endl;
+    ptrHead = PopFront(ptrHead, ptrTemp);
+    std::cout << "Elemento recuperado:  "<< ptrTemp->data << std::endl;
+    free(ptrTemp);
+    Print(ptrHead);
+    std::cout << "Eliminando nodo 5 ... "<< std::endl;
+    ptrHead = Pop(ptrHead, ptrTemp, 5);
+    std::cout << "Elemento recuperado:  "<< ptrTemp->data << std::endl;
+    free(ptrTemp);
+    Print(ptrHead);
+    Clear(ptrHead);
     return 0;
 }
