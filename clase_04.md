@@ -63,11 +63,13 @@ El algoritmo  descrito graficamente ser&iacute;a de la siguiente manera:
 El apuntador `ptrHead` que antes apuntaba al primer elemento ahora apunta al nuevo que hemos creado, y este nuevo elemento apunta al anterior primero. Esta actualización la hacemos en el `main` en  nuestro caso, o donde viva el apuntador `ptrHead`.
 
 - inserción de nodo en posición arbitraria: `Insert(head, val, pos)`
+
+![Insert](images/insertion-in-singly-linked-list-after-specified-node.png)
+
 ```
-    - Si la posición a insertar es la 0
 template <typename T>
 Node<T> *Insert(Node<T> *ptrHead,const T &val, int pos){
-    if(pos == 0){
+    if(pos == 0){//Si la posición a insertar es la 0
         ptrHead = PushFront(ptrHead,val);
         return ptrHead;
     }
@@ -92,13 +94,33 @@ Node<T> *Insert(Node<T> *ptrHead,const T &val, int pos){
     return tempNode;
 }
 ```
-- borrar nodo al inicio y retornar valor dentro de nodo: `PopFront(head)`
+- Borrar nodo al inicio y retornar valor dentro de nodo en variable auxiliar: `PopFront(ptrHead, ptrPopNode)`
+
+![PopFront](images/deletion-in-singly-linked-list-at-beginning.png)
+*Image from www.javatpoint.com*
+
+```
+template <typename T>
+Node<T>* PopFront(Node<T> *ptrHead, Node<T>* &ptrPopNode){
+    if (ptrHead == NULL){
+        std::cout << "Lista vacia operacion no valida" << std::endl;
+        return NULL;
+    }
+    Node<T>* newHead = ptrHead->next; 
+    std::cout << "Primer Elemento: " << ptrHead->data << std::endl;
+    ptrPopNode = ptrHead;
+    return newHead;
+}
+```
+
 
 Al igual que la operación `PushFront`, `PopFront(head)` es una operación muy sencilla, donde cambiamos las referencias.
 - La función deberá retornar la nueva cabeza de la lista.
 - Recibirá un parametro extra donde pondremos el apuntador el primer elemento.
 
 ![PopFront](images/deletion-in-singly-linked-list-at-beginning.png)
+*Image from www.javatpoint.com*
+
 ```
 template <typename T>
 Node<T>* PopFront(Node<T> *ptrHead, Node<T>* &ptrPopNode){
@@ -113,28 +135,114 @@ Node<T>* PopFront(Node<T> *ptrHead, Node<T>* &ptrPopNode){
 }
 ```
 - borrar nodo al final y retornar valor dentro de nodo: `PopBack(head)`
+
+![PopBack](images/deleting-a-node-from-the-last.png)
+*Image from www.javatpoint.com*
+
 ```
 template <typename T>
-Node<T>* PopFront(Node<T> *ptrHead){
-    if (ptrHead == NULL){
-        std::cout << "Lista vacia operacion no valida" << std::endl;
+Node<T> *PopBack(Node<T> *ptrHead, Node<T>* &ptrPopNode){
+    if(ptrHead == NULL){
+        ptrPopNode = NULL;
+        std::cout << "Error lista vacia" << std::endl;
         return NULL;
     }
-    Node<T>* tailNode = ptrHead;
-    Node<T>* tempNode = ptrHead->next;
-    while(tempNode != NULL){
-        tailNode = tempNode;
-        tempNode = tempNode->next
-    } 
-    std::cout << tail->data << std::endl;
-    free(prtHead);
-    return tempNode;
+    Node<T> *tempNode = ptrHead;//creamos nodo temporal para hacer el recorrido
+    Node<T> *prevNode = tempNode;
+    while(tempNode->next != NULL){
+        prevNode = tempNode;
+        tempNode = tempNode->next;
+    }
+    ptrPopNode = tempNode;
+    prevNode->next = NULL;
+    return ptrHead;
 }
 ```
 - borrar nodo en posicion arbitraria: `Delete(head, pos)`
+
 ![Pop](images/deletion-in-singly-linked-list-after-specified-node.png)
+*Image from www.javatpoint.com*
+
+```
+template <typename T>
+Node<T> *Pop(Node<T> *ptrHead, Node<T>* &ptrPopNode, int pos){
+    if(pos == 0){
+        ptrHead = PopFront(ptrHead, ptrPopNode);
+        return ptrHead;
+    }
+    // Ahora buscamos nodo en ubicación(pos>0) a remplazar(logica 0)
+    int contador = 0;
+    Node<T> *tempNode = ptrHead;//creamos nodo temporal para hacer el recorrido
+    Node<T> *prevNode = tempNode;
+    while(tempNode != NULL && contador < pos){
+        prevNode = tempNode;
+        tempNode = tempNode->next;
+        contador++;
+    }
+    if(contador == pos){
+        ptrPopNode = tempNode;
+        prevNode->next = tempNode->next;
+    }else{
+        std::cout << "Posición no encontrada" << std::endl;
+    }
+    return ptrHead;
+}
+```
+
 - crear función que regrese nodo en posición( si la posición excede el número de elemntos en la lista ligada deberá regresar `NULL`): `Position(head, pos)`
+
+```
+template <typename T>
+Node<T> *Position(Node<T> *ptrHead, int pos){
+    if(pos == 0){
+        if(ptrHead == NULL){
+            std::cout << "Error lista vacia" << std::endl;
+        }
+        return ptrHead;
+    }
+    // Ahora buscamos nodo en ubicación(pos>0) a remplazar(logica 0)
+    int contador = 0;
+    Node<T> *tempNode = ptrHead;//creamos nodo temporal para hacer el recorrido
+    Node<T> *prevNode = tempNode;
+    while(tempNode != NULL && contador < pos){
+        prevNode = tempNode;
+        tempNode = tempNode->next;
+        contador++;
+    }
+    if(contador == pos){
+        return tempNode;
+    }else{
+        std::cout << "Posición no encontrada" << std::endl;
+        return NULL;
+    }
+}
+```
+
 - crear función para buscar la primer ocurrencia de un valor `val` dentro de la lista ligada: `Search(head, val)`
+
+```
+template <typename T>
+int Search(Node<T> *ptrHead,const T &val){
+    int posicion = 0;
+    if(ptrHead == NULL){
+        posicion = -1;
+        std::cout << "Error lista vacia" << std::endl;
+        return posicion;
+    }
+    Node<T> *tempNode = ptrHead;//creamos nodo temporal para hacer el recorrido
+    while(tempNode != NULL && tempNode->data != val){
+        tempNode = tempNode->next;
+        posicion++;
+    }
+    if (tempNode == NULL || tempNode->data != val){
+        std::cout << "Valor no encontrado en lista!" << std::endl;
+        posicion = -1;
+    }
+    return posicion;
+}
+```
+
+
 - crear constructor en estructura nodo que imprima "Nodo Creado"
 ```
 Node(){
@@ -154,20 +262,46 @@ Node(T &val){
 
 
 - crear destructor en estructura nodo que imprima "Nodo Borrado"
+
+```
+~Node(){
+    std::cout << "Nodo Borrado" << std::endl;
+}
+```
+
 - sobrecargar operador `[]` para acceder directamente a un nodo por posición
+
+```
+~Node(){
+    std::cout << "Nodo Borrado" << std::endl;
+}
+```
+
 - sobrecargar operador `<<` para poder imprimir el contenido dentro de la estructura nodo.
 
+```
+~Node(){
+    std::cout << "Nodo Borrado" << std::endl;
+}
+```
+
 ## Unit Testing (TDD)
+
+Aunque no es indispenable es bueno empezar a implementar pruebas unitarias. No las exigire para este curso, sin embargo tomaré en cuenta como puntos extras a quien implemente buenas pruebas unitarias.
 
 [Visual Studio](https://docs.microsoft.com/en-us/visualstudio/test/writing-unit-tests-for-c-cpp?view=vs-2019)
 Visual Studio includes these C++ test frameworks with no additional downloads required:
 
 - Microsoft Unit Testing Framework for C++
-- Google Test
+- [Google Test](https://github.com/google/googletest)
 - Boost.Test
 - CTest
 
 [Codebocks](http://wiki.codeblocks.org/index.php/UnitTesting)
+- cppunit
+- [Google Test](https://github.com/google/googletest)
+
+Por el momento recomiendo utilizar [Google Test](https://github.com/google/googletest), la siguiente semana pondré un par de ejemplos asi como un minitutorial de como instalarlo.
 
 ## Biblioteca de trabajo 
 
@@ -179,7 +313,7 @@ Algunas  de las consideraciones que deber&aacute;n cumplir son:
 - Crear arbol de subdirectorios.
 - Nombrar con mayusula cada una de las clases y folders.
 
-## Stack (Pila)
+## Stack (Pila parte 1)
 
 Un stack o LIFO (last in, first out) es un tipo de dato abstracto que sirve como una colecci&oacute;n de elementos, que tiene dos operaciones.
 - `push` agrega un elemento a la colecci&oacute;n .

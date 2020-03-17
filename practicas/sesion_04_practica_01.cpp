@@ -5,7 +5,7 @@
 template <typename T>
 struct Node{
     T data;
-    Node *next;
+    Node<T> *next;
     Node(){
         this->data = 0;
         this->next = NULL;
@@ -15,6 +15,9 @@ struct Node{
         this->data = val;
         this->next = NULL;
         std::cout << "Nodo creado con valor " << val << std::endl;
+    }
+    ~Node(){
+        std::cout << "Nodo Borrado" << std::endl;
     }
 };
 
@@ -160,9 +163,86 @@ Node<T> *Pop(Node<T> *ptrHead, Node<T>* &ptrPopNode, int pos){
     return ptrHead;
 }
 
+
+template <typename T>
+Node<T> *PopBack(Node<T> *ptrHead, Node<T>* &ptrPopNode){
+    if(ptrHead == NULL){
+        ptrPopNode = NULL;
+        std::cout << "Error lista vacia" << std::endl;
+        return NULL;
+    }
+    Node<T> *tempNode = ptrHead;//creamos nodo temporal para hacer el recorrido
+    Node<T> *prevNode = tempNode;
+    while(tempNode->next != NULL){
+        prevNode = tempNode;
+        tempNode = tempNode->next;
+    }
+    std::cout << "El valor lista[ultimo] es: "         << tempNode->data << std::endl;
+    std::cout << "El valor lista[prevNode] es: "       << prevNode->data << std::endl;
+    ptrPopNode = tempNode;
+    prevNode->next = NULL;
+    return ptrHead;
+}
+
+
+template <typename T>
+Node<T> *Position(Node<T> *ptrHead, int pos){
+    if(pos == 0){
+        if(ptrHead == NULL){
+            std::cout << "Error lista vacia" << std::endl;
+        }
+        return ptrHead;
+    }
+    // Ahora buscamos nodo en ubicación(pos>0) a remplazar(logica 0)
+    int contador = 0;
+    Node<T> *tempNode = ptrHead;//creamos nodo temporal para hacer el recorrido
+    Node<T> *prevNode = tempNode;
+    while(tempNode != NULL && contador < pos){
+        prevNode = tempNode;
+        tempNode = tempNode->next;
+        contador++;
+    }
+    if(contador == pos){
+        std::cout << "El valor lista[" << pos <<"] es: "   << tempNode->data << std::endl;
+        std::cout << "El valor lista[prevNode] es: "       << prevNode->data << std::endl;
+        return tempNode;
+    }else{
+        std::cout << "Posición no encontrada" << std::endl;
+        return NULL;
+    }
+}
+
+template <typename T>
+int Search(Node<T> *ptrHead,const T &val){
+    int posicion = 0;
+    if(ptrHead == NULL){
+        posicion = -1;
+        std::cout << "Error lista vacia" << std::endl;
+        return posicion;
+    }
+    Node<T> *tempNode = ptrHead;//creamos nodo temporal para hacer el recorrido
+    while(tempNode != NULL && tempNode->data != val){
+        tempNode = tempNode->next;
+        posicion++;
+    }
+    if (tempNode == NULL || tempNode->data != val){
+        std::cout << "Valor no encontrado en lista!" << std::endl;
+        posicion = -1;
+    }
+    return posicion;
+}
+
+/*template<typename T>
+Node<T>& Node<T>::operator[](int index){
+    std::cout << "aqui vamos"<< std::endl;
+    return *this;
+    //return Position(*this, index);
+}*/
+
 int main(int argc, char *argv[]){
     Node<int> *ptrHead;// Apuntador a la cabeza de la lista
     Node<int> *ptrTemp;// Apuntador auxiliar
+    int pos;
     ptrHead = new Node<int>(0);
     for(int i=1; i <= 9; ++i){
         PushBack<int>(ptrHead, i);
@@ -181,6 +261,22 @@ int main(int argc, char *argv[]){
     std::cout << "Elemento recuperado:  "<< ptrTemp->data << std::endl;
     free(ptrTemp);
     Print(ptrHead);
+    std::cout << "Eliminando ultimo elemento ... "<< std::endl;
+    ptrHead = PopBack(ptrHead, ptrTemp);
+    std::cout << "Elemento recuperado:  "<< ptrTemp->data << std::endl;
+    free(ptrTemp);
+    Print(ptrHead);
+    std::cout << "Elemento en posicion 5 ... "<< std::endl;
+    ptrTemp = Position(ptrHead, 5);
+    std::cout << "Elemento recuperado:  "<< ptrTemp->data << std::endl;
+    Print(ptrHead);
+    std::cout << "Buscar val=5 ... "<< std::endl;
+    pos = Search(ptrHead, 5);
+    std::cout << "Esta en pos: "<< pos << std::endl;
+    std::cout << "Buscar val=50 ... "<< std::endl;
+    pos = Search(ptrHead, 50);
+    std::cout << "Esta en pos: "<< pos << std::endl;
+    //std::cout << ptrHead[5] << std::endl;
     Clear(ptrHead);
     return 0;
 }
