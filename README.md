@@ -1,6 +1,11 @@
 # Curso Estructuras de Datos 2020
 Curso de Estructuras de Datos 2020
 Profesor Jos&eacute; Luis Alonzo Vel&aacute;zquez
+
+# Noticias
+
+Debido al coronavirus las siguientes clases serán impartidas de manera remota. Atentos a sus correos de UNIAT ahi estaré enviando el link para la clase.
+
 ## Temario
 
 1. Las estructuras de datos.
@@ -11,10 +16,10 @@ Profesor Jos&eacute; Luis Alonzo Vel&aacute;zquez
     5. Usar valores como parámetros de las plantillas.
     6. [Problemas que presentan las plantillas.](./codigos/clase_01_ejercicio_02.cpp)
 2. Arreglos.
-    1. Definición.
+    1. [Definición.](./clase_02.md)
     2. Arreglos y punteros nativos de C.
-        1. Arreglos estáticos.
-        2. Arreglos dinámicos.
+        1. [Arreglos estáticos.](./clase_02.md)
+        2. [Arreglos dinámicos.](./codigos/clase_01_ejercicio_01.cpp)
     3. Una clase basada en arreglos.
         1. Insertar un elemento en medio de dos elementos existentes.
         2. Eliminar un elemento del arreglo.
@@ -39,9 +44,9 @@ Profesor Jos&eacute; Luis Alonzo Vel&aacute;zquez
         5. Almacenar el arreglo de jugadores al disco.
     4. Bitfields.
 4. Arreglos multidimensionales.
-    1. Definición.
+    1. [Definición.](./clase_02.md)
     2. Arreglos multidimensionales nativos.
-    3. Arreglos multidimensionales dinámicos.
+    3. [Arreglos multidimensionales dinámicos.](./clase_02.md)
     4. Usar arreglos de 2D como mapas de cuadros (tilemap).
         1. Almacenar el mapa de cuadros.
         2. Generar el mapa de cuadros.
@@ -60,12 +65,12 @@ Profesor Jos&eacute; Luis Alonzo Vel&aacute;zquez
     6. Análisis y comparación de las listas ligadas.
 6. Pilas y colas.
     1. Pilas.
-        1. Definición.
-        2. Funciones e implementación.
+        1. [Definición.](./clase_04.md)
+        2. [Funciones e implementación.](./codigos/clase_05_practica_01.cpp)
         3. El menú del juego.
     2. Colas.
         1. Definición.
-        2. Funciones e implementación.
+        2. [Funciones e implementación.]](./codigos/clase_05_practica_02.cpp)
         3. Cola de comandos.
 7. Hash tables.
     1. ¿Qué son los datos dispersos?.
@@ -109,13 +114,24 @@ Profesor Jos&eacute; Luis Alonzo Vel&aacute;zquez
 - Proyectos 30%( en dos partes)
 - Ex&aacute;menes 30% (3 ex&aacute;menes)
 ## Tareas
-El correo para entregar tareas es 
+El correos para entregar tareas son: 
 
 pepemxl [arroba] yahoo [punto] com [punto] mx
 
+jose[punto]alonzo[arroba]uniat[punto]edu[punto]mx
+
+## Fechas de exámenes parciales
+1er Exámen parcial 31 de Marzo
+2do Exámen parcial 12 de Mayo
+3er Exámen parcial 16 de Junio
+
+## Fechas de entrega de proyecto
+1er Parte Jueves 25 de Junio
+2da Parte Jueves 16 de Julio
+
 ## Referencias
 
-- Introduction to Algoirithms, Thomas Cormen, 3ra Edición.
+- Introduction to Algorithms, Thomas Cormen, 3ra Edición.
 - Como Programar en C/C++, Deitel (Prentice Hall), 2da Edición.
 - [The C++ Library reference](http://www.cplusplus.com/reference/ )
 - [Codeblocks Official web pages](http://www.codeblocks.org/)
