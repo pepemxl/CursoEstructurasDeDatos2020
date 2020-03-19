@@ -1,4 +1,6 @@
 # Estructuras de Datos
+## Sesión 5
+
 ## Stack (Pila parte 2)
 
 Recordando el material de la clase pasada:
