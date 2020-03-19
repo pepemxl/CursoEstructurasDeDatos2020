@@ -91,7 +91,7 @@ sin embargo, tal vez la m&aacute;s usual sea manejar el `top` como el primer nod
 
 - `pop`: Borramos siempre al inicio de nuestra lista ligada.
 
-- `peek`: Ponemos el apuntador siempre al inicio de nuestra lista ligada.
+- `peek`: Deberá regresar el valor que se encuentra en `top` sinb modificar la lista.
 
 ## Queue (Colas)
 

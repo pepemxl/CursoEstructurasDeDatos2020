@@ -15,7 +15,8 @@ int PopStack(int *A,int &top){
 }
 
 int PeekStack(int *A,int &top){
-    
+    int res = A[top];
+    return res;
 }
 
 bool PrintStack(int *A, const int &top){
@@ -26,7 +27,9 @@ bool PrintStack(int *A, const int &top){
 }
 
 int main(int argc, char *argv[]){
-    int A[1000];
+    //int A[1000];
+    int *A;
+    A = new int[1000];
     int top=-1;
     for(int i=0;i < 1000;++i){
         A[i]=-1;
@@ -38,5 +41,8 @@ int main(int argc, char *argv[]){
     PrintStack(A,top);
     std::cout <<"Pop: " << PopStack(A, top) << std::endl;
     PrintStack(A,top);
+    std::cout <<"Peek: " << PeekStack(A, top) << std::endl;
+    PrintStack(A,top);
+    delete[] A;
     return 0;
 }
