@@ -70,7 +70,7 @@ Debido al coronavirus las siguientes clases serán impartidas de manera remota. 
         3. El menú del juego.
     2. Colas.
         1. Definición.
-        2. [Funciones e implementación.]](./codigos/clase_05_practica_02.cpp)
+        2. [Funciones e implementación.]](./codigos/clase_05_practica_03.cpp)
         3. Cola de comandos.
 7. Hash tables.
     1. ¿Qué son los datos dispersos?.
@@ -121,13 +121,13 @@ pepemxl [arroba] yahoo [punto] com [punto] mx
 jose[punto]alonzo[arroba]uniat[punto]edu[punto]mx
 
 ## Fechas de exámenes parciales
-1er Exámen parcial 31 de Marzo
-2do Exámen parcial 12 de Mayo
-3er Exámen parcial 16 de Junio
+- 1er Exámen parcial 31 de Marzo
+- 2do Exámen parcial 12 de Mayo
+- 3er Exámen parcial 16 de Junio
 
 ## Fechas de entrega de proyecto
-1er Parte Jueves 25 de Junio
-2da Parte Jueves 16 de Julio
+- 1er Parte Jueves 25 de Junio
+- 2da Parte Jueves 16 de Julio
 
 ## Referencias
 
