@@ -127,17 +127,6 @@ bool Peek(Node<T> *ptrHead,int &top, T &val){
     return true;
 }
 
-template<typename T>
-class CStack{
-private:
-    Node<T> *ptrHead;
-    int top;
-public:
-    bool Push(Node<T> * &ptrHead,int &top, const T &val);
-    bool Pop(Node<T> * &ptrHead,int &top, T &val);
-    bool Peek(Node<T> *ptrHead,int &top, T &val);
-}
-
 
 int main(){
     int top = -1;
@@ -158,10 +147,6 @@ int main(){
     std::cout << "Valor recuperado: " << valor << std::endl;
     Print(ptrHead);
     Clear(ptrHead);
-    CStack<int> L1;
-    L1.push(3);
-    L1.push(2);
-    L1.pop(4);
     // prueben insertando 1000 elementos;
     // prueben haciendo pop de los 1000 elementos;
     // hagan 3 peek
