@@ -2,6 +2,10 @@
 Curso de Estructuras de Datos 2020
 Profesor Jos&eacute; Luis Alonzo Vel&aacute;zquez
 
+# Calificaciones
+
+[calificaciones](calificaciones.md)
+
 # Noticias
 
 Debido al coronavirus las siguientes clases serán impartidas de manera remota. Atentos a sus correos de UNIAT ahi estaré enviando el link para la clase.
@@ -70,7 +74,7 @@ Debido al coronavirus las siguientes clases serán impartidas de manera remota. 
         3. El menú del juego.
     2. Colas.
         1. Definición.
-        2. [Funciones e implementación.]](./codigos/clase_05_practica_03.cpp)
+        2. [Funciones e implementación.](./codigos/clase_06_practica_03.cpp)
         3. Cola de comandos.
 7. Hash tables.
     1. ¿Qué son los datos dispersos?.
