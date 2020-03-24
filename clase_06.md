@@ -40,7 +40,7 @@ El programa consistirá de 3 archivos:
 
 - [main.cpp](./codigos/clase_06_ejemplo_00/main.cpp), programa principal.
 - [lib1.h](./codigos/clase_06_ejemplo_00/lib1.h), archivo de cabecera(header file) para la clase Point.
-- [lib1.cpp](./codigos/clase_06_ejemplo_00/lib1.cpp), archivo de implementación(implementation file) para clase Point.
+- [lib1.cpp](./codigos/clase_06_ejemplo_00/lib1.cpp), archivo de implementación(implementation file) para la `lib1.h`.
 ```
 g++ -std=c++11 main.cpp -o run.exe
 ```
