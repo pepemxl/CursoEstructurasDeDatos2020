@@ -46,7 +46,7 @@ class CQueue{
 public:
     CQueue();
     CQueue(int iMax);
-    CQueue(int iMax, T *array);
+    CQueue(int iMax, T *tArray, int nArray);
     ~CQueue();
     bool Push(const T &val);
     T Pop();
