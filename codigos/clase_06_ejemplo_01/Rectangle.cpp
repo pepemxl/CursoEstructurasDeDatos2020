@@ -51,4 +51,4 @@ T CRectangle<T>::GetArea() const
 }
 
 
-//template class CRectangle<int>;
+template class CRectangle<int>;

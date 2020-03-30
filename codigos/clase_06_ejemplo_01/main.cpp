@@ -21,5 +21,6 @@ int main(int argc, char *argv[]){
     CRectangle<int> r(p1, p2);
     std::cout << "El area del rectangulo definido por P1 y P2 es: " << r.GetArea() << std::endl;
 
+    CPoint<float> P3;
     return 0;
 }
