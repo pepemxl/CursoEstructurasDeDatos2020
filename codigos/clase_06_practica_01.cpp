@@ -46,6 +46,7 @@ public:
     bool Push(const T &val);
     T Pop();
     bool Pop(T &val);
+    T Peek();
     bool Peek(T &val);
     bool Print();
     bool Clear();
@@ -112,6 +113,19 @@ bool CStack<T>::Peek(T &val){
 }
 
 template <typename T>
+T CStack<T>::Peek(){
+    T result;
+    if(top == -1){
+        std::cout << "Lo sentimos stack vacio" << std::endl;
+        return false;
+    }
+    if(ptrHead != NULL){
+        result = ptrHead->data;
+    }
+    return result;
+}
+
+template <typename T>
 bool CStack<T>::Print(){
     Node<T> *ptrNode = this->ptrHead;
     if(ptrNode == NULL){
@@ -142,6 +156,7 @@ bool CStack<T>::Clear(){
     while(tempNode != NULL){
         currentNode = tempNode;
         tempNode = tempNode->next;
+        std::cout << "Borrando nodo con valor" << currentNode->data << std::endl;
         delete currentNode;
     }
     return true;
@@ -150,6 +165,7 @@ bool CStack<T>::Clear(){
 int main(int argc, char *argv[]){
     CStack<int> L1;
     int temp;
+    std::cout << "Push de:" << 4 << std::endl;
     L1.Push(4);
     std::cout << "Push de:" << 3 << std::endl;
     L1.Push(3);
