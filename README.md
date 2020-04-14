@@ -77,8 +77,8 @@ Debido al coronavirus las siguientes clases serán impartidas de manera remota. 
         2. [Funciones e implementación.](./codigos/clase_06_practica_03.cpp)
         3. Cola de comandos.
 7. Hash tables.
-    1. ¿Qué son los datos dispersos?.
-    2. Implementación de un hash table.
+    1. [¿Qué son los datos dispersos?.](./clase_09.md)
+    2. [Implementación de un hash table.](./clase_09.md)
     3. Usar hash table para almacenar recursos.
         1. La clase string.
         2. Usar la tabla.

@@ -1,3 +1,64 @@
+# Hash Tables(Continuación...)
+
+La clase pasada terminamos de revisar un metodo simple para crear una funcion hash.
+
+[Implementacion](./codigos/clase_09_practica_01.cpp)
+
+Cuya complejidad es $O(n^2)$
+
+Después vimos la misma función hash, implementada utilizando `std::sort` que redujo la complejidad a $O(n\cdot \log{n})$.
+
+[Implementacion](./codigos/clase_09_practica_02.cpp)
+
+Hoy y probablemente la siguiente clase continuaremos con su pratica de crear hashtables.
+
+### Metodo 3 (Usando arreglos de pares)
+
+Recordando, vamos a convertir un arreglo a su forma reducida.
+Dado un arreglo con $n$ elementos distintos convertir el arreglo a una forma donde todos sus elementos se encuentren en el rango $0$ a $n-1$. El orden de los elementos debe mantenerse. Por ejemplo el $0$ sera colocado en el lugar del elemento más pequeño, 1 en el segundo más pequeño, ..., $n-1$ es colocado en el lugar del elemento más grande.
+
+```
+Input:  arr[] = {10, 40, 20}
+Output: arr[] = {0, 2, 1}
+
+Input:  arr[] = {5, 10, 40, 30, 20}
+Output: arr[] = {0, 1, 4, 3, 2}
+```
+Ahora implementaremos un elemento muy util de la STL.
+```
+template<typename T1, typename T2> 
+struct Pair{
+    T1 first;
+    T2 second;
+};
+```
+- Implementar funcion `make_pair(key, value)`, que regresa un estructura de datos Pair.
+- Implementar operador `=`
+```
+Pair<int, int> P1(10, 0)
+Pair<int, int> P2 = P1
+```
+- Implementar operador `==` orden lexicografico.
+- Implementar operador `!=`  orden lexicografico.
+- Implementar operador `>=` orden lexicografico.
+- Implementar operador `<=` orden lexicografico.
+- Implementar operador `<<` impresion de un pair.
+- Implementar metodo `swap`.
+
+Ejemplo de sobrecarga de operadores:
+`Pair& operator= (const Pair& pr);`
+
+[Implementacion](./codigos/clase_10_ejemplo_00/main.cpp)
+
+Siguiente clase continuamos con la pratica:
+## Practica
+
+- Implementar Insercion
+- Implementar Busqueda
+- Implementar Borrado
+
+---
+
 # Recursión.
 
 ## ¿Qué es la recursión?
