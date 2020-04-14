@@ -4,6 +4,7 @@
 void printANumber(int n) 
 { 
     if (n < 1) {//caso base
+        std::cout << n << " "; 
         return;
     }else{ 
         printANumber(n-1);

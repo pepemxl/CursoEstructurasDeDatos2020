@@ -45,17 +45,33 @@ Pair<int, int> P2 = P1
 - Implementar operador `<<` impresion de un pair.
 - Implementar metodo `swap`.
 
+
 Ejemplo de sobrecarga de operadores:
 `Pair& operator= (const Pair& pr);`
 
 [Implementacion](./codigos/clase_10_ejemplo_00/main.cpp)
 
-Siguiente clase continuamos con la pratica:
-## Practica
+Siguiente clase continuamos con la practica, para ello será necesario que hagan el cambio siguiente en el código de la clase anterior:
+```
+void Convert(int arr[],int arr_convert[], int n){ 
+	int temp[n]; 
+	memcpy(temp, arr, n*sizeof(int)); 
+	std::sort(temp, temp + n); 
+	std::unordered_map<int, int> umap; 
+	for (int i = 0; i < n; i++) {//i = 0
+        umap[temp[i]] = i; //umap[temp[0]] = 0; umap[10] = 0; umap[0] = (10, 0)
+    }
+	for (int i = 0; i < n; i++) {
+        arr_convert[i] = umap[arr[i]]; 
+    }
+} 
+```
+Ahora en lugar de usar un `unordered_map`  usaran un `Array` que ya implementaron previamente pero ahora de elementos `pair`, que nos servirá en lugar del `unordered_map`.
 
 - Implementar Insercion
 - Implementar Busqueda
 - Implementar Borrado
+
 
 ---
 
@@ -150,7 +166,7 @@ int fact(int n){
     }
 }
 ```
-Corriendo el [codigo](codigos/clase_10_practica_01.cpp) tenemos el siguiente resultado:
+Corriendo el [codigo](codigos/clase_10_practica_02.cpp) tenemos el siguiente resultado:
 ```
 Factorial de 0 es 1
 Factorial de 1 es 1
@@ -194,3 +210,7 @@ $${\displaystyle h_{n}=2h_{n-1}+1}$$
 $${\displaystyle h_{1}=1}$$
 
 Ahora como practica de la clase implementen esta función recursiva.
+
+
+Ejercicio de practica:
+- Implementar la función de inserción en listas simplemente ligadas usando recursión.

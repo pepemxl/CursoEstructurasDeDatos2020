@@ -27,13 +27,14 @@ Pair<T1, T2>::Pair(const T1 &val1,const T2 &val2){
 }
 
 template <typename T1, typename T2>
-Pair<T1, T2> make_pair(T1 key,T2 value){
+Pair<T1, T2> make_pair(T1 key, T2 value){
     return Pair<T1, T2>(key, value);
 }
 
 template <typename T1, typename T2>
 Pair<T1, T2>& Pair<T1, T2>::operator= (const Pair<T1, T2>& pr){
         return make_pair<T1, T2>(pr.first, pr.second);
+        //return Pair<T1,T2>(pr.first, pr.second);
 }
 
 template <typename T1, typename T2>
@@ -59,8 +60,19 @@ bool Pair<T1, T2>::operator>= (Pair<T1, T2> const & pr){
 
 template <typename T1, typename T2>
 bool Pair<T1, T2>::operator<= (Pair<T1, T2> const & pr){
-    return !(*this >= pr);
+    if( this->first < pr.first ){
+        return true;
+    }
+    if ( this->first == pr.first  && this->second <= pr.second){
+        return true;
+    }
+    return false;
 }
+
+/*template <typename T1, typename T2>
+bool Pair<T1, T2>::operator< (Pair<T1, T2> const & pr){
+    return !(*this >= pr);
+}*/
 
 template <typename T1, typename T2>
 std::ostream& operator<<(std::ostream& os, const Pair<T1, T2>& pr)

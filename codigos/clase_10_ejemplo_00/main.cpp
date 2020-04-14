@@ -6,7 +6,7 @@
 
 int main(int argc, char *argv[]) { 
     Pair<int, int> p1;
-    p1.first = 1;
+    p1.first  = 1;
     p1.second = 2;
     std::cout << "p1=(" << p1.first << ", " << p1.second << ")" << std::endl;
     Pair<int, int> p2(2, 3);
@@ -22,6 +22,9 @@ int main(int argc, char *argv[]) {
     if(p4 == p3){
         std::cout << "p4 is equal to p3" << std::endl;
     }
+    if(p4!=p1){
+        std::cout << "p4 is NOT equal to p1" << std::endl;
+    }
     if(p1>=p1){
         std::cout << "p1 is major or equal to p1" << std::endl;
     }
@@ -33,8 +36,12 @@ int main(int argc, char *argv[]) {
     if(p1<=p2){
         std::cout << "p1 is lower than p2" << std::endl;
     }else{
-        std::cout << "p1 is greater or equal than p2" << std::endl;
-        
+        std::cout << "p1 is greater or equal than p2" << std::endl;    
+    }
+    if(p1 <= p1){
+        std::cout << "p1 is lower or equal than p2" << std::endl;
+    }else{
+        std::cout << "p1 is greater than p2" << std::endl;
     }
     std::cout << "p1=" << p1 << std::endl;
     std::cout << "p2=" << p2 << std::endl;
