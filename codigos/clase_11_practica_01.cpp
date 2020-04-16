@@ -21,16 +21,15 @@ struct Node {
         right = NULL;
         std::cout << "Creando Nodo con valor: " << data << std::endl;
     }
-}
+};
 
 template <typename T>
 Node<T>* Insert(Node<T>* nodeRoot, const T &val){
     if(nodeRoot == NULL){
         Node<T> *newNode = new Node<T>(val);
-        return neNode;
+        return newNode;
     }
-    if(nodeRoot->data <= val)
-
+    // como ejercicio de la clase implementaran el resto de la función insert
 }
 
 
@@ -42,8 +41,8 @@ int main(int argc, char *argv[]){
       /   \ 
      NULL  NULL   
   */
-    root->left  = new Node(2); 
-    root->right = new Node(3); 
+    root = Insert(root, 2);
+    root = Insert(root, 3);
   /* 2 y 3 se convierten respectivamente en los hijos izquierdo y derecho
            1 
          /   \ 
@@ -53,8 +52,8 @@ int main(int argc, char *argv[]){
   */
   
   
-  root->left->left  = newNode(4); 
-  /* 4 becomes left child of 2 
+  root = Insert(root, 4);
+  /* 4 se convierte en el hijo izquierdo del nodo con valor 2 
            1 
        /       \ 
       2          3 
@@ -63,10 +62,10 @@ int main(int argc, char *argv[]){
   /  \ 
 NULL NULL 
 */
-  
-  getchar(); 
-  return 0; 
-}
+    delete root->left->left;
+    delete root->right;
+    delete root->left;
+    delete root;
     return 0;
 }
 
