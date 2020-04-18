@@ -27,6 +27,9 @@ void Convert(int arr[],int arr_convert[], int n){
     // Ponemos el segundo indice de vector en arr_convert
 	for (int i = 0; i < n; i++) {
         arr_convert[_vector[i].second] = i; 
+        //arr_convert[_vector[0].second = <10, 0> = 0] = 0
+        //arr_convert[_vector[1].second = <11, 4> = 4] = 1
+        //arr_convert[_vector[2].second = <12, 3> = 3] = 2
     }
     delete [] _vector;// en realidad este vector es la tabla hash
 } 

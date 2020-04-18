@@ -20,11 +20,16 @@ void Convert(int arr[],int arr_convert[], int n){
 	// Creamos una tabla hash usando un mapa desordenado( lo ironico es que estamos creando una tabla hash con otra y nadie a replicado!!!)
     // pueden pensarlo como una lista de pares de datos, en este caso enteros
 	int umap[100] = {0}; // estamos usando este arreglo para optimizar acceso desperdiciando memoria
-
 	// Insertamos los valores ordenados del arreglo en esta tabla hash
     // {10, 11, 12, 15, 20, 50}; 
 	for (int i = 0; i < n; i++) {//i = 0
         umap[temp[i]] = i; //umap[temp[0]] = 0; umap[10] = 0; umap[0] = (10, 0)
+        //umap[10] = 0;
+        //umap[11] = 1;
+        //umap[12] = 2;
+        //umap[15] = 3;
+        //umap[20] = 4;
+        //umap[50] = 5;
     }
     //i = 4
     //umap[temp[i]] = i; -> umap[temp[4]] = 4; -> umap[20] = 4

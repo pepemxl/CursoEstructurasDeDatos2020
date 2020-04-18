@@ -41,9 +41,11 @@ Pair<T1, T2>& Pair<T1, T2>::operator= (const Pair<T1, T2> &pr){
     if (this == &pr){ // preguntamos si es el mismo objeto
         return *this; // si es asi, entonces regresamos *this referencia a la instancia original
     }
+    //borrando memoria dinamica, declarando memoria dinamica, etc... 
     (*this).first = pr.first;
     (*this).second = pr.second;
     return *this;
+    //return make_Pair(pr.first, pr.second);
 }
 
 /*template <typename T1, typename T2>

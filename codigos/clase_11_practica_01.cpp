@@ -24,25 +24,38 @@ struct Node {
 };
 
 template <typename T>
-Node<T>* Insert(Node<T>* nodeRoot, const T &val){
+bool Insert(Node<T>* &nodeRoot, const T &val){
     if(nodeRoot == NULL){
         Node<T> *newNode = new Node<T>(val);
-        return newNode;
+        nodeRoot = newNode;
+        return true;
     }
     // como ejercicio de la clase implementaran el resto de la función insert
+    if(nodeRoot->left == NULL){
+        std::cout << "Aqui estamos" << std::endl;
+        Node<T> *newNode = new Node<T>(val);
+        nodeRoot->left = newNode;
+        return true;
+    }else{
+        Node<T> *newNode = new Node<T>(val);
+        nodeRoot->right = newNode;
+        return true;
+    }
+    return false;
 }
 
 
 int main(int argc, char *argv[]){
     Node<int> *root;// Creamos raiz del arbol
-    root = Insert(root, 1);
+    root = NULL;
+    Insert(root, 1);
   /* El arbol despues de insertar el valor 1 seria el siguiente:
         1 
       /   \ 
      NULL  NULL   
   */
-    root = Insert(root, 2);
-    root = Insert(root, 3);
+    Insert(root, 2);
+    Insert(root, 3);
   /* 2 y 3 se convierten respectivamente en los hijos izquierdo y derecho
            1 
          /   \ 
@@ -52,7 +65,7 @@ int main(int argc, char *argv[]){
   */
   
   
-  root = Insert(root, 4);
+  //root = Insert(root, 4);
   /* 4 se convierte en el hijo izquierdo del nodo con valor 2 
            1 
        /       \ 
@@ -62,7 +75,22 @@ int main(int argc, char *argv[]){
   /  \ 
 NULL NULL 
 */
-    delete root->left->left;
+   //root = Insert(root, 5);
+  /* 5 se convierte en el hijo derecho del nodo con valor 2 
+           1 
+       /       \ 
+      2          3 
+    /     \       /  \ 
+   4         5  NULL  NULL 
+  /  \      /  \ 
+NULL NULL  NULL NULL
+*/
+    std::cout << root->data << std::endl;
+    std::cout << root->left->data << std::endl;
+    std::cout << root->right->data << std::endl; 
+    //std::cout << root->left->left->data << std::endl;
+    //delete root->left->left->left;
+    //delete root->left->left;
     delete root->right;
     delete root->left;
     delete root;

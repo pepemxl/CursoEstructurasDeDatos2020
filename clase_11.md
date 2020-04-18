@@ -1,6 +1,6 @@
 # Sesión 11
 
-## Continuación de HashTables
+## Continuación de Hash Tables
 
 Primero que nada hay que corregir un problema en el código de la clase pasada.
 
@@ -138,8 +138,8 @@ struct Node {
 template<typename T>
 struct Node{
     T data;
+    Node *left; 
     Node *right;
-    Node *left;
 };
 ```
 
@@ -147,7 +147,7 @@ struct Node{
 
 Ejercicio, implementar versión inteligente de inserción por niveles, en cada nivel deberán estar en orden creciente el valor guardado en cada nodo, de arriba hacia abajo y de izquierda a derecha.
 
-[implementacion 2](codigos/clase_11_practica_00.cpp)
+[implementacion 2](codigos/clase_11_practica_01.cpp)
 
 
 ## Binary Search Tree(Arbol binario de busqueda)

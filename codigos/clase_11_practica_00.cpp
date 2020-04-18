@@ -11,7 +11,7 @@ struct Node {
         data = 0;
         left = NULL;
         right = NULL;
-        std::cout << "Creando Nodo" << std::endl;
+        std::cout << "Creando Nodo con valor 0" << std::endl;
     }
     ~Node(){
         std::cout << "Destruyendo Nodo con valor: " << data << std::endl;
@@ -52,6 +52,13 @@ int main(int argc, char *argv[]){
   /  \ 
 NULL NULL 
 */
+    //root->left->left->left = new Node<int>(5); 
+    std::cout << root->data << std::endl;
+    std::cout << root->left->data << std::endl;
+    std::cout << root->right->data << std::endl; 
+    std::cout << root->left->left->data << std::endl; 
+    //std::cout << root->left->left->left->data << std::endl; 
+    //delete root->left->left->left; 
     delete root->left->left;
     delete root->right;
     delete root->left;
