@@ -24,24 +24,14 @@ struct Node {
 };
 
 template <typename T>
-bool Insert(Node<T>* &nodeRoot, const T &val){
+Node<T>* Insert(Node<T>* &nodeRoot, const T &val){
     if(nodeRoot == NULL){
         Node<T> *newNode = new Node<T>(val);
         nodeRoot = newNode;
         return true;
     }
     // como ejercicio de la clase implementaran el resto de la función insert
-    if(nodeRoot->left == NULL){
-        std::cout << "Aqui estamos" << std::endl;
-        Node<T> *newNode = new Node<T>(val);
-        nodeRoot->left = newNode;
-        return true;
-    }else{
-        Node<T> *newNode = new Node<T>(val);
-        nodeRoot->right = newNode;
-        return true;
-    }
-    return false;
+
 }
 
 
@@ -65,7 +55,7 @@ int main(int argc, char *argv[]){
   */
   
   
-  //root = Insert(root, 4);
+  root = Insert(root, 4);
   /* 4 se convierte en el hijo izquierdo del nodo con valor 2 
            1 
        /       \ 
@@ -75,7 +65,7 @@ int main(int argc, char *argv[]){
   /  \ 
 NULL NULL 
 */
-   //root = Insert(root, 5);
+   root = Insert(root, 5);
   /* 5 se convierte en el hijo derecho del nodo con valor 2 
            1 
        /       \ 
