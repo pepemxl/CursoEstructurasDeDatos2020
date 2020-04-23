@@ -49,7 +49,7 @@ Debido al coronavirus las siguientes clases serán impartidas de manera remota. 
     4. Bitfields.
 4. Arreglos multidimensionales.
     1. [Definición.](./clase_02.md)
-    2. Arreglos multidimensionales nativos.
+    2. [Arreglos multidimensionales nativos.](./clase_02.md)
     3. [Arreglos multidimensionales dinámicos.](./clase_02.md)
     4. Usar arreglos de 2D como mapas de cuadros (tilemap).
         1. Almacenar el mapa de cuadros.
@@ -84,23 +84,23 @@ Debido al coronavirus las siguientes clases serán impartidas de manera remota. 
         2. Usar la tabla.
         3. Cómo cargar los recursos.
 8. Recursión.
-    1. Definición.
-    2. Las torres de Hanoi.
+    1. [Definición.](clase_10.md)
+    2. [Las torres de Hanoi.](clase_10.md)
 9. Árboles.
-    1. Definición.
-    2. Crear una clase del tipo árbol.
+    1. [Definición.](clase_11.md)
+    2. [Crear una clase del tipo árbol.](clase_11.md)
     3. El iteractor del árbol.
     4. Crear un árbol.
         1. Top down.
         2. Bottom up.
     5. Recorrer un árbol.
-        1. Atravesar el preorden.
-        2. Atravesar el postorden.
+        1. [Atravesar el preorden.](clase_12.md)
+        2. [Atravesar el postorden.](clase_12.md)
 10. Árbol binario.
-    1. Definición.
-    2. Estructura de un árbol viario.
-    3. Código de un árbol binario.
-    4. Recorrer un árbol binario.
+    1. [Definición.](clase_12.md))
+    2. [Estructura de un árbol binario.](clase_12.md))
+    3. [Código de un árbol binario.](codigos/clase_12_practica_00.cpp)
+    4. [Recorrer un árbol binario.](codigos/clase_12_practica_01.cpp)
 11. Árbol binario de búsqueda.
     1. Definición de un BST.
     2. Codificar un BST.

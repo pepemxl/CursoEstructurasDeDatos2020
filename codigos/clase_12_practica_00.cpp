@@ -88,17 +88,22 @@ NULL NULL
   /  \      /  \ 
 NULL NULL  NULL NULL
 */
-    std::cout << root->data << " ";
-    std::cout << root->left->data << " ";
-    std::cout << root->right->data << " "; 
-    std::cout << root->left->left->data << " ";
-    std::cout << root->left->right->data << std::endl;
-    delete root->left->right;
-    delete root->left->left->left;
-    delete root->left->left;
-    delete root->right;
-    delete root->left;
-    delete root;
+    std::cout << root->data << " ";//1
+    std::cout << root->left->data << " ";//2
+    std::cout << root->right->data << " "; //3
+    std::cout << root->left->left->data << " ";//4
+    std::cout << root->left->right->data << std::endl;//5
+    if(root->left->right != NULL)
+        delete root->left->right;//5
+    //delete root->left->left->left;
+    if(root->left->left != NULL)
+        delete root->left->left;//4
+    if(root->right != NULL)
+        delete root->right;//3
+    if(root->left != NULL)
+        delete root->left;//2
+    if(root != NULL)
+        delete root;//1
     return 0;
 }
 

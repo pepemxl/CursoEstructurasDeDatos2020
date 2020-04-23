@@ -40,7 +40,6 @@ Node<T>* Insert(Node<T>* root, T data) {
     }
 }
 
-// implementar
 /*
 - Pre-orden:
     - Visitar la raíz.
@@ -58,7 +57,6 @@ void PreOrder(Node<T> *root) {
     PreOrder(root->right);
 }
 
-// implementar
 /*
 - In-orden
     - Recorrer el subárbol izquierdo en entre-orden.
@@ -75,7 +73,6 @@ void InOrder(Node<T> *root) {
     InOrder(root->right);
 }
 
-// implementar
 /*
 Post-orden
     - Recorrer el subárbol izquierdo en post-orden.
@@ -92,10 +89,31 @@ void PostOrder(Node<T> *root) {
     std::cout << root->data << " ";
 }
 
+//implementar 
+/*Algorithm:
+Search (ROOT, ITEM)
+
+Step 1: IF ROOT -> DATA = ITEM OR ROOT = NULL
+    Return ROOT
+   ELSE
+   IF ROOT < ROOT -> DATA
+   Return search(ROOT -> LEFT, ITEM)
+  ELSE
+   Return search(ROOT -> RIGHT,ITEM)
+  [END OF IF]
+  [END OF IF]
+Step 2: END
+*/
+template <typename T>
+Node<T> *Search(Node<T> *root, const T &val) {
+
+}
+
+
 int main(int argc, char *argv[]){
     Node<int> *root = NULL;
-    int A[10] = {5, 3, 8, 4, 2, 1, 7 , 6, 9, 10};
-    for(int i = 0; i < 10; ++i){
+    int A[9] = {43, 10, 79, 90, 12, 54, 11, 9, 50};
+    for(int i = 0; i < 9; ++i){
         root = Insert(root, A[i]);
     }
     std::cout << "PreOrden: " ;

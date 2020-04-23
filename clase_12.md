@@ -22,8 +22,6 @@ En memoria se veria algo parecido a la siguiente imagen:
 ![RepresentacionListasLigadasMemoria](images/binary-tree3.png)
 
 ### Representación secuencial
-This is the simplest memory allocation technique to store the tree elements but it is an inefficient technique since it requires a lot of space to store the tree elements. A binary tree is shown in the following figure along with its memory allocation.
-
 Es la representación más simple, que consiste en usar un arreglo estatico para guardar los nodos.
 
 ![RepresentacionSecuencial](images/sequential-representation-binary-tree.png)
