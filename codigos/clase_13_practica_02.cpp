@@ -183,15 +183,18 @@ int main(int argc, char *argv[]){
     Node<int> *root = NULL;
     int A[9] = {43, 10, 79, 90, 12, 54, 11, 9, 50};
     for(int i = 0; i < 9; ++i){
+        std::cout << "Insertando: " << A[i] << std::endl;
         root = Insert(root, A[i]);
     }
     std::cout << "InOrden: "  ;
     InOrder(root);
     std::cout << std::endl;
+    std::cout << "Borrando 90" << std::endl;
     Delete(root, 90);
     std::cout << "InOrden: "  ;
     InOrder(root);
     std::cout << std::endl;
+    std::cout << "Borrando 9" << std::endl;
     Delete(root, 9);
     std::cout << "InOrden: "  ;
     InOrder(root);
