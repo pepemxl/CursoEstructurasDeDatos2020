@@ -7,6 +7,17 @@ Codificación de Huffman(o Huffman Encoding) es un algoritmo para hacer compresi
 
 Nosotros sabemos que cada caracter es guardado como una secuencia de 0's y 1's usando 8 bits. Esto es llamado `fixed-length encoding`, ya que cada caracter usa la misma cantidad de bits para ser guardado.
 
+
+Basicamente podemos representar cualquier numero en el rango 0-255 con 8 bits.
+|Binario|Decimal|
+|---|---|
+|00000000| = 0|
+|00000001| = 1|
+|00000010| = 2|
+|...||
+|11111111| = 255|
+
+
 ### Ahora Huffman en los 50's se pregunto, dado un texto ¿como podemos reducir la cantidad de espacio necesario para guardar un caracter?
 
 La idea básica que formulo Huffman fue usar `variable-length encoding`. Podemos explotar el hecho de que en un texto algunos caracteres aparecen más veces que otros caracteres([frecuencia de uso de letras en español](https://es.wikipedia.org/wiki/Frecuencia_de_aparici%C3%B3n_de_letras)

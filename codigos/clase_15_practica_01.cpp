@@ -43,7 +43,7 @@ Node<T>* GetNode(T _data, int _frecuencia, Node<T>* left, Node<T>* right){
 // Sobrecarga de operador comparacion para ordenar el heap
 struct comp{
 	bool operator()(Node<char>* l, Node<char>* r){
-		return l->frecuencia > r->frecuencia;
+		return (l->frecuencia > r->frecuencia);
 	}
 };
 
@@ -107,7 +107,7 @@ int BuildHuffmanTree(string text){
     // recorrido del arbol huffman y guardado de los codigos huffman
 	unordered_map<char, string> huffmanCode;
 	Encode(root, "", huffmanCode);
-
+    // Ya llenamos la lista de relaciones entre letras y cadena de bits que le tocan
 	std::cout << "Lista de codigos Huffman:" << std::endl;
 	for (auto pair: huffmanCode) {
 		std::cout << pair.first << " " << pair.second << std::endl;
@@ -127,13 +127,14 @@ int BuildHuffmanTree(string text){
 	}
     std::cout << std::endl;
     return strCodificado.size();
+    return 0;
 }
 
 int main(int argc, char *argv[]){
-    string text = "El problema de los programadores es que nunca se sabe lo que un programador esta haciendo hasta que ya es demasiado tarde.";
-    //string text = "Buddy, you're a boy, make a big noise\nPlaying in the street, gonna be a big man someday\nYou got mud on your face, you big disgrace\n";
-    //text += "Kicking your can all over the place, singin'\nWe will, we will rock you\nWe will, we will rock you\nBuddy, you're a young man, hard man\n";
-    //text += "Shouting in the street, gonna take on the world someday\nYou got blood on your face, you big disgrace\nWaving your banner all over the place\nWe will, we will rock you, sing it!\nWe will, we will rock you, yeah\nBuddy, you're an old man, poor man\nPleading with your eyes, gonna get you some peace someday\nYou got mud on your face, big disgrace\nSomebody better put you back into your place, do it!\nWe will, we will rock you, yeah, yeah, come on\nWe will, we will rock you, alright, louder!\nWe will, we will rock you, one more time\nWe will, we will rock you\nYeah";
+    //string text = "El problema de los programadores es que nunca se sabe lo que un programador esta haciendo hasta que ya es demasiado tarde.";
+    string text = "Buddy, you're a boy, make a big noise\nPlaying in the street, gonna be a big man someday\nYou got mud on your face, you big disgrace\n";
+    text += "Kicking your can all over the place, singin'\nWe will, we will rock you\nWe will, we will rock you\nBuddy, you're a young man, hard man\n";
+    text += "Shouting in the street, gonna take on the world someday\nYou got blood on your face, you big disgrace\nWaving your banner all over the place\nWe will, we will rock you, sing it!\nWe will, we will rock you, yeah\nBuddy, you're an old man, poor man\nPleading with your eyes, gonna get you some peace someday\nYou got mud on your face, big disgrace\nSomebody better put you back into your place, do it!\nWe will, we will rock you, yeah, yeah, come on\nWe will, we will rock you, alright, louder!\nWe will, we will rock you, one more time\nWe will, we will rock you\nYeah";
 	int n = BuildHuffmanTree(text);
     std::cout << std::endl;
     std::cout << "Espacio en memoria de text es: " << 8*text.size() << std::endl; 

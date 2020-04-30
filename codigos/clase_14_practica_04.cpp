@@ -237,7 +237,7 @@ Node<T> *Search2(Node<T> *currentNode, const T &val, Node<T> * &parentNode) {
     if(currentNode->data > val){
         return Search2(currentNode->left, val, parentNode);
     }else{
-        return Search2(currentNode->righ, val, parentNode);
+        return Search2(currentNode->right, val, parentNode);
     }
 }
 
@@ -267,13 +267,13 @@ void Delete2(Node<T> *root, const T &val) {
     // caso 3
     else if(currentNode->left != NULL && currentNode->right != NULL){
         T valAux = FindMaxVal(currentNode->left); // tarea crear funcion recursiva para encontrar el valor maximo de un arbol recursivamente
-        Delete2(root, valAux);  
+        Delete2(root, valAux);
         currentNode->data = valAux;
     }
     // caso 2
     else{
         Node<T> *childNode = NULL;
-        if(currentNode->left == NULL){
+        if(currentNode->left != NULL){
             childNode = currentNode->left;
         }else{
             childNode = currentNode->right;
@@ -303,13 +303,19 @@ int main(int argc, char *argv[]){
     InOrder(root);
     std::cout << std::endl;
     std::cout << "Borrando 79" << std::endl;
-    Delete(root, 79);
+    Delete2(root, 79);
     std::cout << "InOrden: "  ;
     InOrder(root);
     std::cout << std::endl; 
     // Ahora borramos 43
     std::cout << "Borrando 43" << std::endl;
-    Delete(root, 43);
+    Delete2(root, 43);
+    std::cout << "InOrden: "  ;
+    InOrder(root);
+    std::cout << std::endl; 
+    // Ahora borramos 90
+    std::cout << "Borrando 90" << std::endl;
+    Delete2(root, 90);
     std::cout << "InOrden: "  ;
     InOrder(root);
     std::cout << std::endl; 
