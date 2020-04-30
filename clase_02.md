@@ -25,7 +25,7 @@ Empezaremos con las estructuras de datos lineales.
 
 ## Array (Arreglos)
 
-Un Array es una estructra de datos usada para guardar elementos del mismo tipo en ubicaciones de memoria contigua. Una caracteristica escencial de los arreglos es que el tamanio del arreglo debe definirse antes de utilizarlo.
+Un Array es una estructra de datos usada para guardar elementos del mismo tipo en ubicaciones de memoria contigua. Esta estructura de datos es posiblemente la más utilizada. Una caracteristica escencial de los arreglos es que el tamaño del arreglo debe definirse antes de utilizarlo.
 
 ![Array 1D](images/ds_1d_array.png)
 

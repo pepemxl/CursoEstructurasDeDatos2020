@@ -36,7 +36,7 @@ Node<T>* Insert(Node<T>* root, T data) {
 
 ![BST](images/binary-search-tree-creation.png)
 
-Hoy continuaremos con la implementación de otros 3 metodos:
+Hoy continuaremos con la implementación de otros 2 metodos:
 
 - Busqueda de elementos dentro del arbol identificando el nodo en el que se encuentra.
 - Borrado de un nodo específico, de tal manera que siga siendo un arbol de busqueda binaria.
@@ -69,7 +69,8 @@ Para hacer esto basta con hacer null este nodo(el apuntador a este nodo se hace 
 
 ### Borrado de un nodo con un solo nodo hijo
 
-En este caso remplazamos el valor del nodo con el valor de su nodo hijo y borramos el nodo hijo.
+- En este caso remplazamos el valor del nodo con el valor de su nodo hijo y borramos el nodo hijo.
+- Le decimos a el padre del nodo que queremos borrar(en este caso el padre del nodo 12 es el nodo 25), que su hijo ya no es el nodo original, ahora es el hijo de su hijo(esto es, el hijo izquierdo de 25 sera ahora el nodo con valor 6 y libreramos la memoria del nodo 12)
 
 ![borrado2](images/deletion-in-binary-search-tree2.png)
 
@@ -86,3 +87,5 @@ remplazamos 50 con su sucedor en este recorrido inorden(52).
 Ahora 50 es una hoja del arbol que sabemos como borrar.
 
 ![borrado3](images/deletion-in-binary-search-tree3.png)
+
+

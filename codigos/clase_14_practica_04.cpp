@@ -154,6 +154,21 @@ Step 2: END
 */
 
 // implementar
+
+template <typename T>
+T FindMaxVal(Node<T> *root){
+    Node<T> *temp = root;
+    T val = T(-1);//con siderar no siempre sera posible
+    if(temp == NULL){
+        return -1;//asumiremos que son puros positivos
+    }
+    while(temp != NULL){
+        val = temp->data;
+        temp = temp->right;
+    }
+    return val;
+}
+
 template <typename T>
 void Delete(Node<T> *root, const T &val) {
     if(root == NULL){
@@ -199,25 +214,102 @@ void Delete(Node<T> *root, const T &val) {
         }
 
     }
-
     // caso 3
     if(currentNode->left != NULL && currentNode->right != NULL){
-        
+        //intercambiamos por uno anterior en inorden
+        T valAux = FindMaxVal(currentNode->left);
+        Delete(currentNode->left, valAux);
+        currentNode->data = valAux;
     }
 }
+
+// version recursiva
+template <typename T>
+Node<T> *Search2(Node<T> *currentNode, const T &val, Node<T> * &parentNode) {
+    if(currentNode == NULL){
+        parentNode = NULL;
+        return NULL;
+    }
+    if(currentNode->data == val){
+        return currentNode;
+    }
+    parentNode = currentNode;
+    if(currentNode->data > val){
+        return Search2(currentNode->left, val, parentNode);
+    }else{
+        return Search2(currentNode->righ, val, parentNode);
+    }
+}
+
+
+//version recursiva
+template <typename T>
+void Delete2(Node<T> *root, const T &val) {
+    Node<T> *parentNode = NULL;
+    Node<T> *currentNode = root;
+    currentNode = Search2(currentNode, val, parentNode);
+    if(currentNode == NULL){// caso base
+        return;
+    }
+    //caso 1
+    if(currentNode->left == NULL && currentNode->right == NULL){
+        if(currentNode != root){
+            if(parentNode->left == currentNode){
+                parentNode->left = NULL;
+            }else{
+                parentNode->right = NULL;
+            }
+        }else{
+            root = NULL;
+        }
+        delete currentNode;
+    }
+    // caso 3
+    else if(currentNode->left != NULL && currentNode->right != NULL){
+        T valAux = FindMaxVal(currentNode->left); // tarea crear funcion recursiva para encontrar el valor maximo de un arbol recursivamente
+        Delete2(root, valAux);  
+        currentNode->data = valAux;
+    }
+    // caso 2
+    else{
+        Node<T> *childNode = NULL;
+        if(currentNode->left == NULL){
+            childNode = currentNode->left;
+        }else{
+            childNode = currentNode->right;
+        }
+        if (currentNode != root){
+            if (parentNode->left == currentNode){
+                parentNode->left = childNode;
+            }else{
+                parentNode->right = childNode;
+            }
+        } else {
+            root = childNode;
+        }
+        delete currentNode;  
+    }
+}
+
 
 int main(int argc, char *argv[]){
     Node<int> *root = NULL;
     int A[10] = {43, 10, 79, 90, 12, 54, 11, 9, 50, 44};
-    for(int i = 0; i < 10; ++i){
+    for(int i = 0; i < 9; ++i){
         std::cout << "Insertando: " << A[i] << std::endl;
         root = Insert(root, A[i]);
     }
     std::cout << "InOrden: "  ;
     InOrder(root);
     std::cout << std::endl;
-    std::cout << "Borrando 54" << std::endl;
-    Delete(root, 54);
+    std::cout << "Borrando 79" << std::endl;
+    Delete(root, 79);
+    std::cout << "InOrden: "  ;
+    InOrder(root);
+    std::cout << std::endl; 
+    // Ahora borramos 43
+    std::cout << "Borrando 43" << std::endl;
+    Delete(root, 43);
     std::cout << "InOrden: "  ;
     InOrder(root);
     std::cout << std::endl; 

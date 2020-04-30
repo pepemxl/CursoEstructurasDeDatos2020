@@ -154,6 +154,21 @@ Step 2: END
 */
 
 // implementar
+
+template <typename T>
+T FindMaxVal(Node<T> *root){
+    Node<T> *temp = root;
+    T val = T(-1);//con siderar no siempre sera posible
+    if(temp == NULL){
+        return -1;//asumiremos que son puros positivos
+    }
+    while(temp != NULL){
+        val = temp->data;
+        temp = temp->right;
+    }
+    return val;
+}
+
 template <typename T>
 void Delete(Node<T> *root, const T &val) {
     if(root == NULL){
@@ -199,27 +214,55 @@ void Delete(Node<T> *root, const T &val) {
         }
 
     }
-
     // caso 3
     if(currentNode->left != NULL && currentNode->right != NULL){
-        
+        //intercambiamos por uno anterior en inorden
+        T valAux = FindMaxVal(currentNode->left);
+        Delete(currentNode->left, valAux);
+        currentNode->data = valAux;
     }
 }
+
+// version recursiva
+template <typename T>
+Node<T> *Search2(Node<T> *currentNode, const T &val, Node<T> * &parentNode) {
+    if(currentNode == NULL){
+        parentNode = NULL;
+        return NULL;
+    }
+    if(currentNode->data == val){
+        return currentNode;
+    }
+    parentNode = currentNode;
+    if(currentNode->data > val){
+        return Search2(currentNode->left, val, parentNode);
+    }else{
+        return Search2(currentNode->righ, val, parentNode);
+    }
+}
+
 
 int main(int argc, char *argv[]){
     Node<int> *root = NULL;
     int A[10] = {43, 10, 79, 90, 12, 54, 11, 9, 50, 44};
-    for(int i = 0; i < 10; ++i){
+    for(int i = 0; i < 9; ++i){
         std::cout << "Insertando: " << A[i] << std::endl;
         root = Insert(root, A[i]);
     }
-    std::cout << "InOrden: "  ;
-    InOrder(root);
-    std::cout << std::endl;
-    std::cout << "Borrando 54" << std::endl;
-    Delete(root, 54);
-    std::cout << "InOrden: "  ;
-    InOrder(root);
-    std::cout << std::endl; 
+    Node<int> *parentNode = NULL;
+    Node<int> *searchedNode = NULL;
+    int n = 12;
+    std::cout << "Buscando: " << n <<  std::endl;
+    searchedNode = Search(root, n, parentNode);
+    if(searchedNode){
+        std::cout << "Nodo encontrado de " << searchedNode->data;
+        if(parentNode) {
+            std::cout << " Su padre " << parentNode->data << std::endl;
+        }else{
+            std::cout << " Sin padre" << std::endl;
+        }
+    }else{
+        std::cout << "Nodo NO encontrado" << std::endl;
+    }
     return 0;
 }
