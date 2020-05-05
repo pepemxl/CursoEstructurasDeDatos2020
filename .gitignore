@@ -1,8 +1,10 @@
 #archivos a ignorar 
 codigos/**/*.exe
 codigos/**/*.o
+codigos/**/*.dat
 practicas/**/*.exe
 practicas/**/*.o
+practicas/**/*.dat
 UNIAT_Calendario_2020A-2020B_V01.pdf
 asistencia/*
 .vscode/*
