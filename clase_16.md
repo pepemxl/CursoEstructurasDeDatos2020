@@ -19,10 +19,16 @@ Crear las siguientes funciones:
 // Esta funcion deberá procesar una cadena de caracteres y
 // separar en bloques de 8 bits, para entonces convertirlos en
 // caracteres 
-char* segmenta_cadena(char *buffer, int length){
+char** segmenta_cadena(char *buffer, int length){
 
 }
 ```
+```
+vector<char*> segmenta_cadena(char *buffer, int length){
+
+}
+```
+
 
 ```
 // Esta funcion recibe un bloque de 8 bits y lo convierte 

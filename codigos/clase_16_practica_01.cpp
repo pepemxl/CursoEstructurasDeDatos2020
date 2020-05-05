@@ -118,12 +118,13 @@ int BuildHuffmanTree(string text, bool bprint=false){
         std::cout << "Texto original :" << text << std::endl;
     }
 	// Creamos cadena de caracteres con el texto codificado
+    // como se veria en memoria(bits) nuestro texto comprimido/codificado
 	string strCodificado = "";
     for ( int i = 0; i < n; ++i ){
         strCodificado += huffmanCode[text[i]];
     }
     if(bprint){
-    std::cout << "Texto codificado :" << strCodificado << std::endl;
+        std::cout << "Texto codificado :" << strCodificado << std::endl;
     }
 	
     // recorrido del arbol y texto codificado y decodificado
@@ -153,10 +154,12 @@ int test_00(){
 
 int test_01(){
     FILE * pFile;
-    char cadena[] = "Hola Mundo Ejemplo 2";
+    char cadena[] = "Hola Mundo Ejemplo 2";//ultimo caracter '\0'
     pFile = fopen("clase_16_practica_01/ejemplo_01.dat", "wb");
     if(pFile != NULL){
-        fwrite (cadena , sizeof(char), sizeof(cadena), pFile);
+        //fprintf(pFile, "%s",cadena);
+        fwrite(cadena , sizeof(char), sizeof(cadena), pFile);
+        std::cout << sizeof(cadena) << std::endl;
         fclose (pFile);
     }
     return 0;
@@ -200,7 +203,7 @@ void test_04(){
         char cadena[] = "Hola Mundo Ejemplo 3\n";
         if(write_ptr != NULL){
             std::cout << "Escribiendo archivo" << std::endl;
-            fwrite (cadena , sizeof(char), sizeof(cadena), write_ptr);
+            fwrite(cadena , sizeof(char), sizeof(cadena), write_ptr);
             fwrite(buffer, sizeof(char), length, write_ptr);
             fclose(write_ptr);
         }
@@ -275,12 +278,60 @@ void test_05(){
 }
 
 
+vector<string> segmenta_cadena(char *buffer, int length){
+    vector <string> myvector;
+    string buffer2="";
+    for(int i = 0; i < length-1 ;++i){
+        if(i > 0 && i%8 == 0){
+            myvector.push_back(buffer2);
+            buffer2="";
+        }
+        buffer2 += buffer[i];
+    }
+    if(buffer2.size()>0){
+        for(int i = buffer2.size(); i < 8;i++){
+            buffer2 += '0';
+        }
+        myvector.push_back(buffer2);
+    }
+    return myvector;
+}
+
+// Esta funcion recibe un bloque de 8 bits y lo convierte 
+// a un caracter
+char convierte_cadena_8bits_to_char(char *buffer){
+    int n = 0;
+    int potencia = 1;
+    std::cout << "Convirtiendo Big Endian" << std::endl;
+    std::cout << buffer << std::endl;
+    for(int i = 0; i < 8;++i){
+        if(i > 0){
+            potencia *= 2;
+        }
+        if(buffer[i] == '1'){
+            n += potencia;
+        }
+    }
+    std::cout << n << std::endl;
+    return char(n);
+}
+
 int main(int argc, char *argv[]){
     // test_00();
     // test_01();
     // test_02();
     // test_03();
     // test_04();
-    test_05();
+    // test_05();
+    char cadena[] = "1010001000101001010010101001011010101010101";
+    int n = sizeof(cadena);
+    std::cout << cadena << std::endl;
+    std::cout << n << std::endl;
+    vector<string> vectorCadenas = segmenta_cadena(cadena, n);
+    std::cout << "Vector con " << vectorCadenas.size() << " elementos"<< std::endl;
+    for(int i = 0; i < vectorCadenas.size();++i){
+        std::cout << vectorCadenas[i] << std::endl;;
+    }
+    convierte_cadena_8bits_to_char((char*)vectorCadenas[0].c_str());
 	return 0;
 }
