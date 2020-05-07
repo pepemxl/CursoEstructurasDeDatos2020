@@ -2,9 +2,11 @@
 codigos/**/*.exe
 codigos/**/*.o
 codigos/**/*.dat
+codigos/**/*.huf
 practicas/**/*.exe
 practicas/**/*.o
 practicas/**/*.dat
+practicas/**/*.huf
 UNIAT_Calendario_2020A-2020B_V01.pdf
 asistencia/*
 .vscode/*
