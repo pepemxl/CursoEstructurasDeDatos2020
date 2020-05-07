@@ -2,7 +2,7 @@
 
 ## Codificación de Huffman (continuación)
 
-Esta clase completaremos la codificación de Huffman adaptable.
+Esta clase completaremos la implementación funcional de codificación/compresión de Huffman adaptable.
 
 La clase pasada implementamos una simple segmentación de una cadena de carfacteres en cadenas que representan 8 bits.
 
@@ -26,7 +26,7 @@ vector<string> segmenta_cadena(char *buffer, int length){
     return myvector;
 }
 ```
-Depués implementamos  Big Endian apartir de estas cadenas de 8 bits para encontrar el caracters/entero asociado a cada subcadena. Esta no es una implementación optima pero servira.
+Después implementamos  Big Endian apartir de estas cadenas de 8 bits para encontrar el caracters/entero asociado a cada subcadena. Esta no es una implementación optima pero servira.
 ```
 char convierte_cadena_8bits_to_char(char *buffer){
     int n = 0;
@@ -66,7 +66,7 @@ Con esto ya tenemos casi todos los ingredientes para terminar nuestro programa q
 Ahora para terminar con este ejercicio y poder crear una herramienta de codificación y decodificación de texto, el resto de la clase harán lo siguiente:
 
 - Como pueden notar al decodificar hay un error justo en el último caracter, corregir el código para que este error no ocurra.
-- Crear una función que reciba un `unordered_map<char, int> um_freq` y nos regrese el arbol de decodificación Huffman.
+- Crear una función que reciba un `unordered_map<char, int> um_freq` y nos regrese la raiz del arbol de decodificación Huffman.
 - Crear una función que reciba un `unordered_map<char, int> um_freq` y nos regrese un mapa de codificación `unordered_map<char, string> huffmanCode`.
 - Crear función que reciba como parametro `unordered_map<char, int> um_freq` y que guarde un archivo con el siguiente formato:
 ```

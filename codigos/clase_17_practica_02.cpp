@@ -139,6 +139,98 @@ int BuildHuffmanTree(string text, bool bprint=false){
     return 0;
 }
 
+unordered_map<char, int> crea_mapa_frecuencias(string text){
+    // contamos el numero de veces que aparece cada caracter y lon guardamos en un unordered_map
+	unordered_map<char, int> um_freq;
+    int n = text.size();
+    for ( int i = 0; i < n; ++i ){
+        um_freq[text[i]]++;
+    }
+    return um_freq;
+}
+
+unordered_map<char, string> crea_mapa_codificacion(unordered_map<char, int> um_freq){
+    Node<char>* root;
+     // creamos priority queue para guardar los nodos
+	priority_queue<Node<char>*, vector<Node<char>*>, comp> pq;
+    // creamos un nodo hoja por cada caracter y lo agregamos al priority queue
+	for (auto pair: um_freq) {
+		pq.push(GetNode<char>(pair.first, pair.second, NULL, NULL));
+	}
+	// Repetimos el proceso de crear nodos internos hasta que quede un solo nodo
+	while (pq.size() > 1){
+        // Quitamos los dos nodos con mayor prioridad(menor frecuencia) del priority queue
+		Node<char> *left = pq.top();
+        pq.pop();
+		Node<char> *right = pq.top();
+        pq.pop();
+        // Creamos un nuevo nodo interno que contiene la suma de las dos frecuencias y lo agregamos al priority queue
+		int suma = left->frecuencia + right->frecuencia;
+		pq.push(GetNode<char>('\0', suma, left, right));
+	}
+    // Ya quye solo queda uno creamos el nodo root con este ultimo valor del priority queue
+	root = pq.top();
+    // recorrido del arbol huffman y guardado de los codigos huffman
+	unordered_map<char, string> huffmanCode;
+	Encode(root, "", huffmanCode);
+    return huffmanCode;
+}
+
+Node<char>* crea_arbol_decodificacion(unordered_map<char, int> um_freq){
+    Node<char>* root;
+    unordered_map<char, string> huffmanCode;
+    // creamos priority queue para guardar los nodos
+	priority_queue<Node<char>*, vector<Node<char>*>, comp> pq;
+    // creamos un nodo hoja por cada caracter y lo agregamos al priority queue
+	for (auto pair: um_freq) {
+		pq.push(GetNode<char>(pair.first, pair.second, NULL, NULL));
+	}
+	// Repetimos el proceso de crear nodos internos hasta que quede un solo nodo
+	while (pq.size() > 1){
+        // Quitamos los dos nodos con mayor prioridad(menor frecuencia) del priority queue
+		Node<char> *left = pq.top();
+        pq.pop();
+		Node<char> *right = pq.top();
+        pq.pop();
+        // Creamos un nuevo nodo interno que contiene la suma de las dos frecuencias y lo agregamos al priority queue
+		int suma = left->frecuencia + right->frecuencia;
+		pq.push(GetNode<char>('\0', suma, left, right));
+	}
+    // Ya quye solo queda uno creamos el nodo root con este ultimo valor del priority queue
+	root = pq.top();
+    // recorrido del arbol huffman y guardado de los codigos huffman
+	Encode(root, "", huffmanCode);
+    return root;
+}
+
+
+unordered_map<char, string> crea_huffman_code2(unordered_map<char, int> um_freq, Node<char>* &root){
+    // creamos priority queue para guardar los nodos
+	priority_queue<Node<char>*, vector<Node<char>*>, comp> pq;
+    // creamos un nodo hoja por cada caracter y lo agregamos al priority queue
+	for (auto pair: um_freq) {
+		pq.push(GetNode<char>(pair.first, pair.second, NULL, NULL));
+	}
+	// Repetimos el proceso de crear nodos internos hasta que quede un solo nodo
+	while (pq.size() > 1){
+        // Quitamos los dos nodos con mayor prioridad(menor frecuencia) del priority queue
+		Node<char> *left = pq.top();
+        pq.pop();
+		Node<char> *right = pq.top();
+        pq.pop();
+        // Creamos un nuevo nodo interno que contiene la suma de las dos frecuencias y lo agregamos al priority queue
+		int suma = left->frecuencia + right->frecuencia;
+		pq.push(GetNode<char>('\0', suma, left, right));
+	}
+    // Ya quye solo queda uno creamos el nodo root con este ultimo valor del priority queue
+	root = pq.top();
+    // recorrido del arbol huffman y guardado de los codigos huffman
+	unordered_map<char, string> huffmanCode;
+	Encode(root, "", huffmanCode);
+    return huffmanCode;
+}
+
+
 unordered_map<char, string> crea_huffman_code(string text, Node<char>* &root){
     // contamos el numero de veces que aparece cada caracter y lon guardamos en un unordered_map
 	unordered_map<char, int> um_freq;
@@ -169,6 +261,27 @@ unordered_map<char, string> crea_huffman_code(string text, Node<char>* &root){
 	unordered_map<char, string> huffmanCode;
 	Encode(root, "", huffmanCode);
     return huffmanCode;
+}
+
+vector<string> segmenta_cadena2(char *buffer, int length, int &cantidad){
+    vector <string> myvector;
+    string buffer2="";
+    for(int i = 0; i < length-1 ;++i){
+        if(i > 0 && i%8 == 0){
+            myvector.push_back(buffer2);
+            buffer2="";
+        }
+        buffer2 += buffer[i];
+    }
+    if(buffer2.size()>0){
+        cantidad = 0;
+        for(int i = buffer2.size(); i < 8;i++){
+            buffer2 += '0';
+            cantidad++;
+        }
+        myvector.push_back(buffer2);
+    }
+    return myvector;
 }
 
 vector<string> segmenta_cadena(char *buffer, int length){
@@ -240,10 +353,27 @@ string decodifica(string strCodificado,unordered_map<char, string> &huffmanCode,
     return strDecodificado;
 }
 
+bool guarda_mapa_frecuencias(unordered_map<char,int> &um_freq, int cantidad){
+    FILE *out_ptr;
+    out_ptr = fopen("clase_17_practica_01/mapa_freq.out","w");
+    if(out_ptr != NULL){
+        fprintf(out_ptr, "%d %d\n",um_freq.size(), cantidad);
+        for(auto pair: um_freq){
+            fprintf(out_ptr, "%c %d\n", pair.first, pair.second);
+        }
+        fclose(out_ptr);
+    }else{
+        return false;
+    }
+    return true;
+}
+
 int main(int argc, char *argv[]){
+    unordered_map<char, int> um_freq;
     unordered_map<char, string> huffmanCode;
     Node<char>* root;
     std::ifstream in_file;
+    int cantidad = 0;
     in_file.open("clase_15_practica_01.cpp", ios::binary | ios::in);
     if (in_file) {
         std::cout << "Leyendo archivo" << std::endl;
@@ -254,7 +384,11 @@ int main(int argc, char *argv[]){
         std::cout << "Leyendo " << length << " caracteres... "<< std::endl;
         in_file.read(buffer, length);
         //std::cout << buffer << std::endl;
-        huffmanCode = crea_huffman_code(buffer, root);
+        um_freq = crea_mapa_frecuencias(buffer);
+        huffmanCode = crea_mapa_codificacion(um_freq);
+        root = crea_arbol_decodificacion(um_freq);
+        //crea_huffman_code2(um_freq, root);
+        //huffmanCode = crea_huffman_code(buffer, root);
         string strCodificado = "";
         for ( int i = 0; i < length; ++i ){
             strCodificado += huffmanCode[buffer[i]];
@@ -266,7 +400,7 @@ int main(int argc, char *argv[]){
             std::cout << "Segmentando archivo codificado" << std::endl;
             char *buffer2 = new char[strCodificado.size()];
             strcpy(buffer2, strCodificado.c_str());
-            vector<string> vectorCadenas = segmenta_cadena(buffer2, strCodificado.size());
+            vector<string> vectorCadenas = segmenta_cadena2(buffer2, strCodificado.size(), cantidad);
             // for(int i = 0; i < vectorCadenas.size();++i){
             //     std::cout << vectorCadenas[i] << std::endl;
             // }
@@ -274,7 +408,7 @@ int main(int argc, char *argv[]){
             for(int i = 0; i < vectorCadenas.size();++i){
                 cadena_BE.push_back(convierte_cadena_8bits_to_char((char*)vectorCadenas[i].c_str()));
             }
-            //std::cout << cadena_BE << std::endl;
+            std::cout << cadena_BE << std::endl;
             std::cout << "Escribiendo archivo comprimido" << std::endl;
             fwrite (cadena_BE.c_str() , sizeof(char), cadena_BE.size(), write_ptr);
             fclose(write_ptr);
@@ -283,6 +417,7 @@ int main(int argc, char *argv[]){
         delete[] buffer;
         in_file.close();
     }  
+    guarda_mapa_frecuencias(um_freq, cantidad);
     // Ahora leamos el archivo comprimido
     in_file.open("clase_17_practica_01/clase_15_practica_01.huf", ios::binary | ios::in); 
      if (in_file) {
@@ -303,7 +438,12 @@ int main(int argc, char *argv[]){
         }
         std::cout << std::endl;
         std::cout << "String codificado en binario listo para decodificar con arbol" << std::endl;
-        std::cout << strCodificado << std::endl;
+        //std::cout << strCodificado << std::endl;
+        for(int i = 0; i < cantidad;++i){
+            strCodificado.pop_back();
+        }
+        //std::cout << "Quitando ceros de mas" << std::endl;
+        //std::cout << strCodificado << std::endl;
         decodifica(strCodificado, huffmanCode, root);
         in_file.close();
      }
