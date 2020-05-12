@@ -4,7 +4,7 @@
 
 Enviar documento con respuestas antes de de las 8:45.
 
-1. La complejidad de cruatro algoritmos son `O(2n)`, `O(logn)`, `O(n3)` y `O(n)` respectivamente. Cuando `n` es muy grande, ¿cuál de los tres algoritmos es el más eficiente?
+1. La complejidad de cuatro algoritmos son `O(2n)`, `O(logn)`, `O(n3)` y `O(n)` respectivamente. Cuando `n` es muy grande, ¿cuál de los cuatro algoritmos es el más eficiente?
 
 - a) `O(2n)`
 - b) `O(logn)`
@@ -65,10 +65,10 @@ int main(){
 - a)   `O(log n)`
 - b)   `O(n)`
 - c)   `O(n * log n)`
-- d)   `O(n2)`
+- d)   `O(n^2)`
 
 
-10. En un arbol de busqueda binaria, el elemento más grande debe cmplir:
+10. En un arbol de busqueda binaria, el elemento más grande debe cumplir:
 
 - a)   ser un nodo raiz.
 - b)   ser un nodo hoja.
