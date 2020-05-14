@@ -8,7 +8,7 @@ Enviar documento con respuestas antes de de las 8:45.
 
 - a) `O(2n)`
 - b) `O(logn)`
-- c) `O(n3)`
+- c) `O(n^3)`
 - d) `O(n)`
 
 2. Crear una función que sume los elementos de una lista simplemente ligada de enteros recursivamente.
