@@ -78,17 +78,6 @@ int main(){
 - d)   tiene a lo más un hijo.
 
 
-
-
-
-
-
-
-
-
-
-
-
 # Arboles de Busqueda Binaria
 
 ## Problemas básiscos de arboles binarios
@@ -130,4 +119,27 @@ Inicializamos el rango con `{INT_MIN .. INT_MAX}`. El primer nodo. esta obviamen
 `{INT_MIN .. root->data}`, si un valor esta en el rango `{INT_MIN .. root->data}` significa que pertenence al subarbol izquierdo. Para construir el arbol derecho hacemos lo mismo pero ahora con el rango `{root->data .. INT_MAX}`.
 
 Esta clase de técnica se acostumbra llamar con pivote.
+
+[implementacion](codigos/clase_18_practica_02.cpp)
+
+# Arboles AVL(Arboles Balanceados)
+
+Los arboles AVL en honor a GM Adelson-Velsky-EM Landis, son arboles de busqueda binaria balanceados por altura, en los cuales a cada nodo se le asocia un factor de balance, el cual se calcula substrayendo la altura de su subarbol derecho menos la altura de su subarbol izquierdo.
+
+Un arbol de busqueda binaria se dice balanceado si el factor de balance de cada nodo esta entre -1 y 1. En cualquier otro caso se dice que es un arbol desbalanceado.
+
+Si el factor de balance de un nodo es 1, quiere decir que su subarbol izquierdo termina un nivel arriba de donde termina su subarbol derecho.
+
+Si el factor de balance de un nodo es 0, quiere decir que su subarbol izquierdo termina en el mismo nivel que termina su subarbol derecho.
+
+Si el factor de balance de un nodo es -1, quiere decir que su subarbol derecho termina un nivel arriba de donde termina su subarbol izquierdo.
+
+Ejemplo: 
+
+![AVL](images/avl-tree.png)
  
+
+Como buscar elementos y hacer recorridos no modifica arboles binarios entonces estas operaciones son perfectamente validas en arboles AVL.
+
+
+Como practica quiero que intenten hacer una función de inserción y otra de borrado, que mantenga la condición de serguir siendo un arbol AVL.
