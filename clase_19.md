@@ -1,59 +1,82 @@
 # Primero revisemos las respuestas del exámen
 
-1. La complejidad de cuatro algoritmos son `O(2n)`, `O(logn)`, `O(n3)` y `O(n)` respectivamente. Cuando `n` es muy grande, ¿cuál de los cuatro algoritmos es el más eficiente?
+1. La complejidad de cuatro algoritmos son `O(2^n)`, `O(logn)`, `O(n^3)` y `O(n)` respectivamente. Cuando `n` es muy grande, ¿cuál de los cuatro algoritmos es el más eficiente?
 
 - a) `O(2n)`
-- b) `O(logn)`
+- **b) `O(logn)`**
 - c) `O(n^3)`
 - d) `O(n)`
 
 2. Crear una función que sume los elementos de una lista simplemente ligada de enteros recursivamente.
 ```
+template <typename T>
+T suma(Node<T>*root){
+    if(root!=NULL){
+        return root->data + suma(root->next);
+    }
+    return T(0);
+}
 
+return root->data+root->next->data+... + root->next->...->next->data
 ```
 
 3. Crear una función que sume los elementos de una lista simplemente ligada de enteros de manera iterativa.
 ```
-
+template <typename T>
+T suma(Node<T>*root){
+    Node<T> *temp = root;
+    T resultado = T(0);
+    while(temp != NULL){
+        resultado += temp->data;
+        temp = temp->next;
+    }
+    return resultado;
+}
 ```
 
 4. ¿Qué imprime el siguiente código?
 ```
-int cuenta(numero){
+int cuenta(int numero){
     numero -= 1
     if(numero > 0){
         std::cout << numero <<" ";
         cuenta(numero)
     }
+    return 0;
 }
+
 int main(){
     cuenta(10);
     return 0;
 }
+
+R.- 9 8 ..... 1
 ```  
 
 5. En el siguiente árbol binario de búsqueda ¿Cuál es el resultado de su recorrido inorden?
 
 ![Arbol](images/binary-search-tree.png)
 
+`R.- 7, 15, 17, 22, 27, 30, 45, 60, 75`
 
-6. En el siguiente árbol binario de búsqueda, al borrar el nodo 22 ¿por qué otro nodo podrá ser reemplazado para que el árbol reultante siga siendo un árbol binario de búsqueda?
+
+6. En el siguiente árbol de busqueda binaria, al borrar el nodo 22 ¿por qué otro nodo podrá ser reemplazado para que el árbol resultante siga siendo un árbol de busqueda binaria?
 
 ![Arbol](images/binary-search-tree.png)
 
 - a) 30
 - b) 15
 - c) 60
-- d) 17
+- **d) 17**
 
-7. En el siguiente árbol binario de búsqueda se quiere buscar el elemento 22, ¿cuántas llamadas se realizarán a la función buscar?
+7. En el siguiente árbol de busqueda binaria se quiere buscar el elemento 22, ¿cuántas llamadas se realizarán a la función buscar?
 
 ![Arbol](images/binary-search-tree.png)
 
 - a) 0
 - b) 1
 - c) 2
-- d) 3
+- **d) 3**
 
 8. Si se construye un arbol de busqueda binaria con los siguientes valores `{11, 6, 8, 19, 4, 13, 5, 17, 43, 49, 16, 31, 32}`, ¿Cual es el hijo izquierdo de nodo con el valor 43?
 
@@ -62,20 +85,39 @@ int main(){
 - c) 19
 - d) 13
 
+```
+     11
+    /  \
+   6     19
+  /  \    /  \
+ 4    8  13     43
+  \        \     / \
+   5        17  31  49
+           /
+          16
+         
+
+R.- 31
+```
+
 9. En el peor caso, cual es la complejidad del recorrido en postorden de un arbol de busqueda binaria con `n` nodos:
 
 - a)   `O(log n)`
-- b)   `O(n)`
+- **b)   `O(n)`**
 - c)   `O(n * log n)`
 - d)   `O(n^2)`
 
+```
+O(n) ~ O(n+cualquiernumero)
+O(n) ~ O(2*n) ~ O(3*n)
+```
 
 10. En un arbol de busqueda binaria, el elemento más grande debe cumplir:
 
 - a)   ser un nodo raiz.
 - b)   ser un nodo hoja.
 - c)   debe tener al menos un hijo.
-- d)   tiene a lo más un hijo.
+- **d)   tiene a lo más un hijo.**
 
 
 # Arboles de Busqueda Binaria
@@ -124,6 +166,14 @@ Esta clase de técnica se acostumbra llamar con pivote.
 
 # Arboles AVL(Arboles Balanceados)
 
+Si `n=3000` en un arbol bien balanceado tendriamos que realizar $log_{2}n$ operaciones. Esto es,
+
+$$log_{2}(3000) = \frac{log_{10}3000}{log_{10}{2}} \approx \frac{3.47}{.30} \approx 12$$
+
+Si usaramos un algoritmo de busqueda arbitraria como quick sort(`O(nlogn)`) en un arreglo, esto es,
+
+$$  \approx 3000*3.47 \approx 9000$$
+
 Los arboles AVL en honor a GM Adelson-Velsky-EM Landis, son arboles de busqueda binaria balanceados por altura, en los cuales a cada nodo se le asocia un factor de balance, el cual se calcula substrayendo la altura de su subarbol derecho menos la altura de su subarbol izquierdo.
 
 Un arbol de busqueda binaria se dice balanceado si el factor de balance de cada nodo esta entre -1 y 1. En cualquier otro caso se dice que es un arbol desbalanceado.
@@ -143,3 +193,6 @@ Como buscar elementos y hacer recorridos no modifica arboles binarios entonces e
 
 
 Como practica quiero que intenten hacer una función de inserción y otra de borrado, que mantenga la condición de serguir siendo un arbol AVL.
+
+### Ejercicio para siguiente clase o antes
+- Implementar función que calcule el factor de balanceo y lo guarde en cada nodo en una variable llamada factor.

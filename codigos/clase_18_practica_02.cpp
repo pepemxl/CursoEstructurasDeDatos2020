@@ -279,7 +279,7 @@ Node<T>* CreateTreeFromArray(T pre[], int &n){
         return NULL;
     }
     int preIndex = 0;
-    return CreateTreeFromPreOrder(pre, preIndex, pre[0], INT_MIN, INT_MAX, n);
+    return CreateTreeFromPreOrder(pre, preIndex, pre[preIndex], INT_MIN, INT_MAX, n);
 }
 
 int main(int argc, char *argv[]){
