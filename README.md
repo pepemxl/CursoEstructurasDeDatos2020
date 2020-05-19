@@ -90,7 +90,7 @@ Debido al coronavirus las siguientes clases serán impartidas de manera remota. 
     1. [Definición.](clase_11.md)
     2. [Crear una clase del tipo árbol.](clase_11.md)
     3. El iteractor del árbol.
-    4. Crear un árbol.
+    4. [Crear un árbol.](clase_12.md)
         1. Top down.
         2. Bottom up.
     5. Recorrer un árbol.
@@ -101,9 +101,9 @@ Debido al coronavirus las siguientes clases serán impartidas de manera remota. 
     2. [Estructura de un árbol binario.](clase_12.md))
     3. [Código de un árbol binario.](codigos/clase_12_practica_00.cpp)
     4. [Recorrer un árbol binario.](codigos/clase_12_practica_01.cpp)
-11. Árbol binario de búsqueda.
-    1. Definición de un BST.
-    2. Codificar un BST.
+11. [Árbol binario de búsqueda.](clase_13.md)
+    1. [Definición de un BST.](clase_13.md)
+    2. [Codificar un BST.](clase_14.md)
 12. Grafos.
     1. Definición.
     2. Tipos de grafos.
