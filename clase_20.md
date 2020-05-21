@@ -42,7 +42,7 @@ Dadas tres letras `A,B,C` con valores `1,2,3` respectivamente tenemos basicament
 - A,B,C (no balanceado RR)
 - A,C,B (no balanceado LR)
 - B,A,C (balanceado)
-- B,C,B (balanceado)
+- B,C,A (balanceado)
 - C,A,B (no balanceado RL)
 - C,B,A (no balanceado LL)
 
@@ -149,4 +149,6 @@ Primero insertamos todos los elementos como en cualquier arbol de busqueda binar
 [Visualizacion](https://www.cs.usfca.edu/~galles/visualization/AVLtree.html)
 
 
-[codigo](codigos/clase_20_practica_03.cpp)
+[codigo RR](codigos/clase_20_practica_03.cpp)
+
+[codigo LR](codigos/clase_20_practica_04.cpp)
