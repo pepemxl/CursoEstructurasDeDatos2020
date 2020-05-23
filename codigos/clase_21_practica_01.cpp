@@ -465,7 +465,7 @@ int main(int argc, char *argv[]){
     std::cout << "Nodo z Nodo->" << z->data << std::endl;
     std::cout << "Nodo y Nodo->" << z->left->data << std::endl;
     std::cout << "Nodo x Nodo->" << z->left->right->data << std::endl;
-    /*z->left = LeftRotate(z->left);
+    z->left = LeftRotate(z->left);
     ComputeHeight(root);
     std::cout << "Rotado a la izquieda:"<< std::endl;
     PreOrderWithHeight(root);
@@ -475,17 +475,22 @@ int main(int argc, char *argv[]){
     if(z_father == NULL){
         root = RightRotate(z);
     }else{
-        z_father->left = RightRotate(z);//realmente podria ser hijo derecho
+        // Aqui podria ser hijo derecho o hijo izquiedo
+        if(z->father->left == z){
+            z_father->left = RightRotate(z);
+        }else{
+            z_father->right = RightRotate(z);
+        }
     }
     ComputeHeight(root);
     std::cout << "Rotado a la derecha:"<< std::endl;
     PreOrderWithHeight(root);
     std::cout << std::endl;
     PreOrderWithFactor(root);
-    std::cout << std::endl;*/
+    std::cout << std::endl;
 
     // Usando LeftRightRotate
-    if(z_father == NULL){
+    /*if(z_father == NULL){
         root = LeftRightRotate(z);
     }else{
         z_father->left = LeftRightRotate(z);//realmente podria ser hijo derecho
@@ -494,6 +499,6 @@ int main(int argc, char *argv[]){
     PreOrderWithHeight(root);
     std::cout << std::endl;
     PreOrderWithFactor(root);
-    std::cout << std::endl;
+    std::cout << std::endl;*/
     return 0;
 }

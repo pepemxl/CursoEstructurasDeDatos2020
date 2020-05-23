@@ -438,7 +438,7 @@ T2   T3                           T3   T4
 
 template <typename T>
 Node<T>* RightLeftRotate(Node<T> *z){
-    Node<T> *y = z->right;
+    //Node<T> *y = z->right;
     z->right = RightRotate(z->right);
     Node<T> *x = LeftRotate(z);
     return x;  
@@ -470,6 +470,12 @@ int main(int argc, char *argv[]){
     std::cout << "Posteriormente rotamos a la izquierda."<< std::endl;
     Node<int> *z_father;
     Node<int> *z = Search(root,90, z_father);
+    if(z_father != NULL){
+        std::cout << "Nodo z_father Nodo->" << z->data << std::endl;
+    }else
+    {
+        std::cout << "Z no tiene padre" << std::endl;
+    }
     std::cout << "Nodo z Nodo->" << z->data << std::endl;
     std::cout << "Nodo y Nodo->" << z->right->data << std::endl;
     std::cout << "Nodo x Nodo->" << z->right->left->data << std::endl;
@@ -483,6 +489,6 @@ int main(int argc, char *argv[]){
     PreOrderWithHeight(root);
     std::cout << std::endl;
     PreOrderWithFactor(root);
-    std::cout << std::endl;    
+    std::cout << std::endl; 
     return 0;
 }
