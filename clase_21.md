@@ -51,7 +51,6 @@ template <typename T>
 Node<T>* LeftRotate(Node<T>* A){
     Node<T> *B  = A->right;
     Node<T> *T2 = B->left;
-    Node<T> *T3 = B->right;
     B->left = A;   // su hijo izquierdo ya no es T2 ahora es A
     A->right = T2; // su hijo derecho ya no es B ahora es T2
     return B;  
@@ -59,6 +58,7 @@ Node<T>* LeftRotate(Node<T>* A){
 // A = LeftRotate(A) cuidado con esto!!!  ó 
 // C->left = LeftRotate(A) ó 
 // C->left = LeftRotate(C->left)
+// C->right = LeftRotate(A)// veremos un caso cuando no necesariamente es rotacion en caso LR
 ```
 
 ```
@@ -72,12 +72,13 @@ Node<T>* LeftRotate(Node<T>* A){
 ```
 ```
 template <typename T>
-Node<T>* LeftRotate(Node<T>* C){
+Node<T>* LeftRotate_LR(Node<T>* C){
     Node<T> *A  = C->left;
     Node<T> *B  = A->right;
     Node<T> *T2 = B->left;
     B->left = A;   // su hijo izquierdo ya no es T2 ahora es A
     A->right = T2; // su hijo derecho ya no es B ahora es T2
+    C->left = B;
     return B;  
 }
 // A = LeftRotate(C) ó 
@@ -107,6 +108,16 @@ T1, T2 y T3 son subarboles del arbol con raiz "C" en el arbol a la izquieda
      / \
     T1  T2
 ```
+```
+template <typename T>
+Node<T>* RightRotate(Node<T>* B){
+    Node<T> *T3 = B->right;
+    return T3;  
+}
+// C->left = RightRotate(B)
+// PadreDeC->NodoHijo = B
+```
+
 
 ## Ejemplo 1
 Considerar el arbol generado por:
@@ -165,5 +176,6 @@ T2   T3                            T3   T4
 
 # Hora de hablar de sus proyectos
 
+## Enviar descripción de su proyecto junto con estructura basica de lo que implementarán.
 
 

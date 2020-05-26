@@ -6,10 +6,12 @@ struct Node {
     T data;
     Node *left;
     Node *right;
-    int factor=0;
-    int height=1;
+    int factor;
+    int height;
     Node(){
         data = 0;
+        factor = 0;
+        height = 1;
         left = NULL;
         right = NULL;
         //std::cout << "Creando Nodo" << std::endl;
@@ -19,6 +21,8 @@ struct Node {
     }
     Node(const T &val) {
         data = val;
+        factor = 0;
+        height = 1;
         left = NULL;
         right = NULL;
         //std::cout << "Creando Nodo con valor: " << data << std::endl;
@@ -334,9 +338,9 @@ int main(int argc, char *argv[]){
     PreOrder(root);
     std::cout << std::endl;
     ComputeHeight(root);
-    PreOrderWithFactor(root);
-    std::cout << std::endl;
     PreOrderWithHeight(root);
+    std::cout << std::endl;
+    PreOrderWithFactor(root);
     std::cout << std::endl;
     return 0;
 }

@@ -383,15 +383,27 @@ T1   x                          y    T3                      T1  T2 T3  T4
   T2   T3                    T1   T2
 */
 
-/* Caso RR
-  z                                y
- /  \                            /   \ 
-T1   y     Rotacion derecha(z)  z      x
-    /  \   - - - - - - - ->    / \    / \
-   T2   x                     T1  T2 T3  T4
+/* Caso RR donde z es el nodo critico
+  z                                  y
+ /  \                              /   \ 
+T1   y     Rotacion Izquierda(z)  z      x
+    /  \   - - - - - - - - ->    / \    / \
+   T2   x                       T1  T2 T3  T4
        / \
      T3  T4
 */
+template <typename T>
+Node<T>* LeftRotate(Node<T>* z){
+    // creamos temporales de nodos a mover
+    Node<T> *y = z->right;
+    Node<T> *T2 = z->right->left;
+    // Realizamos el cambio
+    y->left = z;
+    z->right = T2;
+    // Actualizar alturas y factores de balanceo
+    return y;  
+}  
+
 
 /* Caso RL
    z                            z                              x
@@ -406,7 +418,7 @@ T2   T3                           T3   T4
 
 int main(int argc, char *argv[]){
     Node<int> *root = NULL;
-    int pre[] = {100, 50, 25, 75, 150};// supongamos que este es su preorden
+    int pre[] = {67,39,85,90};// supongamos que este es su preorden
     int n = sizeof(pre)/sizeof(pre[0]);// recuerden solo se vale hacer esto si se declaro en el mismo scope
     root = CreateTreeFromArray(pre, n);
     PreOrder(root);
@@ -417,23 +429,23 @@ int main(int argc, char *argv[]){
     PreOrderWithHeight(root);
     std::cout << std::endl;
 
-    std::cout << "Insertamos valor 12"<< std::endl;
-    root = Insert<int>(root, 12);
+    std::cout << "Insertamos valor 100"<< std::endl;
+    root = Insert<int>(root, 100);
     ComputeHeight(root);
-    PreOrderWithFactor(root);
-    std::cout << std::endl;
     PreOrderWithHeight(root);
     std::cout << std::endl;
-
-    std::cout << "Buscamos el nodo hijo izquierdo del nodo critido nodo->100 y rotamos respecto a ese nodo"<< std::endl;
-    Node<int> *y_father;
-    Node<int> *y = Search(root,50, y_father);
-    std::cout << "Nodo hijo izquiedo Nodo->" << y->data << std::endl;
-    root=RightRotate(y_father);
-    ComputeHeight(root);
     PreOrderWithFactor(root);
     std::cout << std::endl;
+    
+    std::cout << "Buscamos el nodo critido nodo->85 y rotamos a la izquierda respecto a ese nodo"<< std::endl;
+    Node<int> *z_father;
+    Node<int> *z = Search(root,85, z_father);
+    std::cout << "Nodo hijo izquiedo Nodo->" << z->data << std::endl;
+    z_father->right=LeftRotate(z);
+    ComputeHeight(root);
     PreOrderWithHeight(root);
+    std::cout << std::endl;
+    PreOrderWithFactor(root);
     std::cout << std::endl;
     return 0;
 }

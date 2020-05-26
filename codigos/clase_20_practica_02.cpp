@@ -324,7 +324,6 @@ void PreOrderWithHeight(Node<T> *root) {
     PreOrderWithHeight(root->right);
 }
 
-
 int Max(int a, int b){  
     return (a > b)? a : b;  
 }  
@@ -367,8 +366,8 @@ Node<T>* RightRotate(Node<T>* y){
     x->right = y;  
     y->left = T2;  
     // actualizamos alturas
-    y->height = Max(GetNodeHeight(y->left), GetNodeHeight(y->right)) + 1;  
-    x->height = Max(GetNodeHeight(x->left), GetNodeHeight(x->right)) + 1;  
+    //y->height = Max(GetNodeHeight(y->left), GetNodeHeight(y->right)) + 1;// sospecho -1  
+    //x->height = Max(GetNodeHeight(x->left), GetNodeHeight(x->right)) + 1;  
     // actualizamos raiz
     return x;  
 }  

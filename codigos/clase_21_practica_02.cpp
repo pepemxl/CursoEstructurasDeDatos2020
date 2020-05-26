@@ -417,11 +417,12 @@ T1   x                          y    T3                      T1  T2 T3  T4
 */
 template <typename T>
 Node<T>* LeftRightRotate(Node<T> *z){
-    Node<T> *y = z->left;// L
+    //Node<T> *y = z->left;// L
     //y = LeftRotate(y);
     z->left = LeftRotate(z->left);
     Node<T> *x = RightRotate(z);
     return x;  
+    //return z;  
 }  
 
 
@@ -468,8 +469,6 @@ int main(int argc, char *argv[]){
     // Usando LeftRightRotate
     if(z_father == NULL){
         root = LeftRightRotate(z);
-    }else{
-        z_father->left = LeftRightRotate(z);//realmente podria ser hijo derecho
     }
     ComputeHeight(root);
     PreOrderWithHeight(root);
@@ -489,6 +488,7 @@ int main(int argc, char *argv[]){
     std::cout << std::endl;
     z = Search(root,108, z_father);
     // solo podemos hacer esto por que de antemano sabemos que tiene estructura LR
+    std::cout << "Nodo z_father Nodo->" << z_father->data << std::endl;
     std::cout << "Nodo z Nodo->" << z->data << std::endl;
     std::cout << "Nodo y Nodo->" << z->left->data << std::endl;
     std::cout << "Nodo x Nodo->" << z->left->right->data << std::endl;
@@ -496,7 +496,12 @@ int main(int argc, char *argv[]){
     if(z_father == NULL){
         root = LeftRightRotate(z);
     }else{
-        z_father->right = LeftRightRotate(z);//realmente podria ser hijo izquierdo
+        if(z_father->left == z){
+            z_father->left = LeftRightRotate(z);//realmente podria ser hijo izquierdo
+        }else{
+            z_father->right = LeftRightRotate(z);//realmente podria ser hijo izquierdo   
+        }
+        
     }
     ComputeHeight(root);
     PreOrderWithHeight(root);
