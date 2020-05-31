@@ -59,7 +59,7 @@ Un grafo es una estructura de datos no lineal que consta de nodos y aristas. Los
 
 ## Definición
 
-Un grafo consiste en un conjunto finito de vértices (o nodos) y un conjunto de bordes que conectan un par de nodos.
+Un grafo consiste en un conjunto finito de vértices (o nodos) y un conjunto de aristas que conectan un par de nodos.
 
 Un grafo `G` puede definirse como un conjunto ordenado `G(V, E)` donde `V(G)` representa el conjunto de vértices y `E(G)` representa el conjunto de aristas que se utilizan para conectar estos vértices.
 
@@ -70,22 +70,23 @@ un grafo `G(V, E)` con 5 vertices `(A, B, C, D, E)` y 6 aristas `((A,B), (B,C), 
 ![Grafo](images/graph-definition.png)
 
 
-- Ruta/Trayectoria(path): Una ruta se puede definir como la secuencia de nodos que se siguen para alcanzar algún nodo terminal V desde el nodo inicial U. Ejemplo: U=A, V=E, una ruta podria ser A->B->C->E.
-- Ruta/Trayectoria Cerrada tambien llamado ciclo(path closed): Se llamará una ruta como ruta cerrada si el nodo inicial es el mismo que el nodo terminal. Una ruta será ruta cerrada si V0 = VN. Ejemplo: `U=A`, `V=A`, una ruta podria ser `A->B->C->E->D->A`.
+- Ruta/Trayectoria(path): Una ruta se puede definir como la secuencia de nodos que se siguen para alcanzar algún nodo terminal V desde el nodo inicial U. Ejemplo: `U=A`, `V=E`, una ruta podria ser `A->B->C->E`.
+- Ruta/Trayectoria Cerrada tambien llamado ciclo(path closed): Se llamará una ruta como ruta cerrada si el nodo inicial es el mismo que el nodo terminal. Una ruta será ruta cerrada si `V0 = VN`. Ejemplo: `U=A`, `V=A`, una ruta podria ser `A->B->C->E->D->A`.
 - Ruta Simple(Simple path): Si todos los nodos del gráfico son distintos con una excepción `V0 = VN`, entonces dicha ruta `P` se llama ruta simple cerrada.
 - Ciclo(cycle): Un ciclo se puede definir como la ruta que no tiene aristas o vértices repetidos, excepto el primero y último vértice.
 - Grafo conectado: Un grafo conectado es aquel en el que existe alguna ruta entre cada dos vértices `(u, v)` en `V`. No hay nodos aislados en el grafo conectado.
 - Grafo Completo: Un grafo completo es aquel en el que cada nodo está conectado con todos los demás nodos. Un gráfico completo contiene $\frac{n\cdot (n-1)}{2}$ aristas donde $n$ es el número de nodos en el gráfico.
-- Grafo Ponderado: En un gráfico ponderado,es en el cual a cada arista se le asigna un peso, que podria ser longitud o peso de la arista. El peso de una arista `e` se puede denotar como `w(e)`, que debe ser un valor positivoque indique el costo de atravesar esa arista.
-- Bigrafo: Un Bigrafo es un grafo dirigido en el que cada arista del grafo está asociada con alguna dirección y el desplazamiento solo se puede realizar en la dirección especificada.
+- Grafo Ponderado: En un gráfico ponderado,es en el cual a cada arista se le asigna un peso, que podria ser longitud o peso de la arista. El peso de una arista `e` se puede denotar como `w(e)`, que debe ser un valor positivo que indique el costo de atravesar esa arista.
+- Digrafo: Un Digrafo(Grafo Dirigido) es un grafo dirigido en el que cada arista del grafo está asociada con alguna dirección y el desplazamiento solo se puede realizar en la dirección especificada.
 - Loop: Una arista que se asocia con puntos finales similares se llama un Loop.
 - Nodos adyacentes: Si dos nodos `u` y `v` están conectados a través de una arista `e`, entonces los nodos `u` y `v` se llaman nodos vecinos o adyacentes.
 - Grado de un nodo: El grado de un nodo es el número de aristas que están conectadas con ese nodo. Un nodo con grado 0 se llama como nodo aislado.
+- Nodo aislado: Es un nodo con grado 0.
 
 
 ## Aplicaciones de Grafos
 
-Los grafos se usan para resolver muchos problemas de la vida real. Los grafos se usan para representar redes. Las redes pueden incluir rutas en una ciudad o red telefónica por ejemplo. Los grafos también se usan en redes sociales como LinkedIn, Facebook. Por ejemplo, en Facebook, cada persona está representada con un vértice (o nodo). Cada nodo es una estructura y contiene información como identificación de persona, nombre, género, configuración regional, etc.
+Los grafos se usan para resolver muchos problemas de la vida real. Los grafos se usan para representar redes. Las redes pueden incluir rutas en una ciudad o red telefónica por ejemplo. Los grafos también se usan en redes sociales como LinkedIn, Facebook, Amazon. Por ejemplo, en Facebook, cada persona está representada con un vértice (o nodo). Cada nodo es una estructura y contiene información como identificación de persona, nombre, género, configuración regional, etc.
 
 
 ## Tipos de Grafos
@@ -158,3 +159,6 @@ Tenemos una serie de listas ligadas y cada lista contiene todos los nodos vecino
 
 Tenemos una serie de listas ligadas y cada lista contiene todos los nodos vecinos al nodo raiz que pueden ser accedidos desde el nodo raiz y ademas agregamos un valor que indica el costo de ir de raiz a ese nodo.
 
+## Implementación
+
+[codigo](codigos/clase_23_practica_03.cpp)
