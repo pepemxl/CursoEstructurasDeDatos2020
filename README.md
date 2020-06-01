@@ -17,11 +17,11 @@ Debido al coronavirus las siguientes clases serán impartidas de manera remota. 
     2. [Funciones hechas a base de plantillas.](./codigos/clase_01_ejercicio_02.cpp)
     3. [Clases hechas a base de plantillas.](./practicas/clase_02_practica_02.cpp)
     4. [Tipos múltiples parametrizados.](./codigos/clase_01_ejercicio_03.cpp)
-    5. Usar valores como parámetros de las plantillas.
+    5. [Usar valores como parámetros de las plantillas.](clase_01.md)
     6. [Problemas que presentan las plantillas.](./codigos/clase_01_ejercicio_02.cpp)
-2. Arreglos.
+2. [Arreglos.](clase_02.md)
     1. [Definición.](./clase_02.md)
-    2. Arreglos y punteros nativos de C.
+    2. [Arreglos y punteros nativos de C.](clase_02.md)
         1. [Arreglos estáticos.](./clase_02.md)
         2. [Arreglos dinámicos.](./codigos/clase_01_ejercicio_01.cpp)
     3. Una clase basada en arreglos.
@@ -104,10 +104,10 @@ Debido al coronavirus las siguientes clases serán impartidas de manera remota. 
 11. [Árbol binario de búsqueda.](clase_13.md)
     1. [Definición de un BST.](clase_13.md)
     2. [Codificar un BST.](clase_14.md)
-12. Grafos.
-    1. Definición.
-    2. Tipos de grafos.
-    3. Implementar un grafo.
+12. [Grafos.](clase_23.md)
+    1. [Definición.](clase_23.md)
+    2. [Tipos de grafos.](clase_23.md)
+    3. [Implementar un grafo.](clase_24.md)
     4. Recorrer un grafo.
     5. Una clase grafo.
 
