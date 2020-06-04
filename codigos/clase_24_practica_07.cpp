@@ -18,6 +18,7 @@ struct Node{
         this->next = NULL;
     }
     Node(T &val, T &val2){
+        //this->id = val;
         this->data = val;
         this->weight = val2;
         this->next = NULL;

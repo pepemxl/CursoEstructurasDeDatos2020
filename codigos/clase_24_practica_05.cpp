@@ -92,6 +92,7 @@ int main(int argc, char *argv[]) {
     for(int i = 0; i < n;++i){
         adj[i] = new Node<int>(i);
     }
+    //iniciaNodo(adj, 0);
 	AddEdge(adj, 0, 1); 
 	AddEdge(adj, 0, 3); 
     //AddEdge(adj, 1, 0);  //ya fue considerado
@@ -101,5 +102,9 @@ int main(int argc, char *argv[]) {
 	AddEdge(adj, 2, 4); 
 	AddEdge(adj, 3, 4); 
 	PrintGraph(adj, n);
+    for(int i = 0; i < n;++i){
+        delete adj[i];
+    }
+    delete [] adj;
 	return 0; 
 } 

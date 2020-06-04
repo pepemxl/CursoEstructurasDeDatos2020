@@ -35,11 +35,12 @@ void CreaAdyacencias(int **matriz_adyacencias){
     matriz_adyacencias[4][3] = 1;
 }
 
+/*G es un grafo No dirigido*/
 void AgregaAdyacencia(int **matriz_adyacencias, int i, int j){
     matriz_adyacencias[i][j] = 1;
     matriz_adyacencias[j][i] = 1;
 }
-
+/*G es un grafo No dirigido*/
 void CreaAdyacencias2(int **matriz_adyacencias){
     AgregaAdyacencia(matriz_adyacencias, 0, 1);
     AgregaAdyacencia(matriz_adyacencias, 0, 3);
