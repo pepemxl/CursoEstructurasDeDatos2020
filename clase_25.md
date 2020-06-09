@@ -102,3 +102,6 @@ En este caso como cada nodo es alcanzable realmente nos basta con dos estados(`n
 ![Grafo](images/graph-representation-linked-representation.png)
 
 [codigo](codigos/clase_25_practica_04.cpp)
+
+
+## Implementar el DFS utilizando el arreglo de estados, asumir que puede haber islas, o nodos que no son alcanzables.

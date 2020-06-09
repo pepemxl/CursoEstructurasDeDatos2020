@@ -108,8 +108,8 @@ Debido al coronavirus las siguientes clases serán impartidas de manera remota. 
     1. [Definición.](clase_23.md)
     2. [Tipos de grafos.](clase_23.md)
     3. [Implementar un grafo.](clase_24.md)
-    4. Recorrer un grafo.
-    5. Una clase grafo.
+    4. [Recorrer un grafo.](clase_25.md)
+    5. [Una clase grafo.](clase_25.md)
 
 ## Criterio de Calificaci&oacute;n
 

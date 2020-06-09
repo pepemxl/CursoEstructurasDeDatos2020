@@ -59,7 +59,7 @@ Creamos un arreglo de vectores, que puede ser estatico o dinamico, o un vector d
 vector<int> adj[n];//estatico
 vector<int> *adj = new vector<int>[n];//dinamico
 vector<vector<int>> adj;
-Node adj[n];
+Node *adj[n];
 Node **adj;
 ```
 donde cada elemento del arreglo $adj_{i}$ es una lista de los nodos relacionados con $i$.

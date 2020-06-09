@@ -58,6 +58,7 @@ void Graph::BFS(int s){
             if (!m_ptrbVisited[*it]){ 
                 m_ptrbVisited[*it] = true; 
                 queue.push_back(*it); 
+                //std::cout << "Nodo " << (char)(*it+'A') << " fue agregado por ser vecino de Nodo " << (char)(s+'A') << std::endl;
             }
         }
    } 
@@ -73,13 +74,16 @@ int main(int argc, char *argv[]){
     g.addEdge(4, 3); 
     g.addEdge(3, 0); 
     //g.addEdge(0, 3); // que pasa si invertimos esta relacion
-    std::cout << "BFS(0)" << std::endl;
+    /*std::cout << "BFS(0)" << std::endl;
     g.BFS(0); 
-    std::cout << std::endl;
-    /*for(int i = 0; i< 5; ++i){
+    std::cout << std::endl;*/
+    /*std::cout << "BFS(3)" << std::endl;
+    g.BFS(3); 
+    std::cout << std::endl;*/
+    for(int i = 0; i< 5; ++i){
         std::cout << "BFS(" << i << ")" << std::endl;
         g.BFS(i); 
         std::cout << std::endl;
-    }*/
+    }
     return 0; 
 }
