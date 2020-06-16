@@ -35,7 +35,7 @@ Enviar documento con respuestas antes de de las 8:45.
 5. ¿Cuando se habla de Inorden, preorden y posorden, se hace referencia a:? 
 
  - a. Recorrido de los grafos 
- - b. Recorrido de los árboles binarios Respuesta
+ - b. Recorrido de los árboles binarios
  - c. Recorrido de las estructuras de datos lineales 
  - d. Recorrido de las estructuras de datos o nlineales
 
