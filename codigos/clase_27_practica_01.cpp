@@ -16,6 +16,8 @@ private:
 	int m_iCapacity; // tamaño maximo
 	int m_iHeapSize; // tamaño actual
 public: 
+    // Constructor por default
+    MinHeap(); 
     // Constructor: Crea un Heap apartir del arreglo A[] de tamaño capacity
 	MinHeap(int capacity); 
 	// heapify un subarbol con un nodo raiz dado el index
@@ -40,6 +42,12 @@ public:
     void Print();
 }; 
 
+MinHeap::MinHeap(){
+	m_iHeapSize = 0; 
+	m_iCapacity = 100; 
+    m_ptriArr = new int[100];// se pone una potencia de 2
+    // tambien podrian usar un vector<int>
+} 
 
 MinHeap::MinHeap(int capacity){
 	m_iHeapSize = 0; 
@@ -48,19 +56,34 @@ MinHeap::MinHeap(int capacity){
 } 
 
 int MinHeap::Parent(int i){
-    return (i-1)/2; 
+    if(i > 0){
+        return (i-1)/2; 
+    }else{
+        return -1;// para indicar que hubo un error
+    }
 }
 
 int MinHeap::Left(int i){
-    return (2*i + 1); 
+    if(i < m_iCapacity){
+        return (2*i + 1); 
+    }else{
+        return -1;// para indicar que hubo un error
+    }
+    
 }
 
 int MinHeap::Right(int i){
-    return (2*i + 2);
+    if(i < m_iCapacity){
+        return (2*i + 2);
+    }else{
+        return -1;// para indicar que hubo un error
+    }
 }
 
 int MinHeap::GetMin(){
-    return m_ptriArr[0]; 
+    if(m_iCapacity >0 ){
+        return m_ptriArr[0]; 
+    }
 }
  
 void MinHeap::InsertKey(int key){ 
@@ -92,9 +115,9 @@ void MinHeap::DecreaseKey(int current_index, int val) {
 } 
 
 int MinHeap::ExtractMin() {
-    std::cout << "Extrayendo raiz " << std::endl;
-	if(m_iHeapSize <= 0){
-		return INT_MAX;
+    std::cout << "Extrayendo raiz: "<< std::endl;
+	if(m_iHeapSize <= 0){//heapSize hasta donde he borrado o hasta donde hay elemento en mi arreglo
+		return INT_MIN;// INT_MIN(comodin para decir que es un elemento sin valor o le ponemos INT_MAX)
     }
 	if(m_iHeapSize == 1) {
 		m_iHeapSize--; 
@@ -110,18 +133,18 @@ int MinHeap::ExtractMin() {
 void MinHeap::DeleteKey(int current_index){ 
     std::cout << "Borrando elemento en posicion: " << current_index << std::endl;
 	DecreaseKey(current_index, INT_MIN); 
-	ExtractMin(); 
+	std::cout << "Extract Min: " << ExtractMin() << std::endl; 
 } 
 
 // Metodo recursivo para crear un heap apartir de un
 // subarbol con su raiz en el indice dado, se asume que sus subarboles ya son heaps
 void MinHeap::MinHeapify(int current_index) {
     // obtenemos los nodos de los hijos izquierdo y derecho
-	int l = Left(current_index); 
-	int r = Right(current_index); 
+	int l = Left(current_index); // posicion en el arreglo
+	int r = Right(current_index); // posicion en el arreglo
     // en principio el mas chico se encuentra en la posicion current_index
-	int smallest = current_index; 
-	if(l < m_iHeapSize && m_ptriArr[l] < m_ptriArr[current_index]){
+	int smallest = current_index; // posicion mas pequeña a arreglar
+	if( l< m_iHeapSize && m_ptriArr[l] < m_ptriArr[current_index]){
         smallest = l; 
     }
 	if(r < m_iHeapSize && m_ptriArr[r] < m_ptriArr[smallest]){
@@ -150,7 +173,9 @@ int main(int argc, char *argv[]) {
 	heap.InsertKey(9); 
     heap.InsertKey(7); 
     heap.Print();
-    heap.DeleteKey(5); 
+    heap.DeleteKey(5); // Borrar en posicion
+    heap.Print();
+    std::cout << "Current Min:" << heap.GetMin() << std::endl;
 	heap.InsertKey(8); 
     heap.Print();
 	std::cout << "Raiz: " << heap.ExtractMin() << std::endl; 

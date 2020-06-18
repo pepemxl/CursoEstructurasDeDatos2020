@@ -21,7 +21,7 @@ La clase pasada ya vimos como hacer un balanceo cuando tenemos la condición `LL
 
 <img width="20%" height="150" src="images/avl_RR.png"/>
 
-Hoy terminaremos con los casos `LR` y `RL`.
+Los casos `LR` y `RL`.
 
 <img width="20%" height="150" src="images/right_subtree_of_left_subtree.jpg"/>
 
@@ -99,10 +99,71 @@ Resultado: 1 -> 2 -> 5 -> 6
 
 [source problema](https://www.hackerrank.com/challenges/tree-top-view/problem)
 
+Sugerencia:
+Hacer recorrido transversal del arbol, en cada nivel verificar hasta donde se imprimio en el nivel anterior.
+Ejemplo:
+```
+     5
+   /   \
+  1     15
+       /  \
+      10  16
+       \
+        12
+          \
+          13
+            \
+            14 
+```
+Su recorrido transversal es:
+5->1->15->10->16->12->13->14
+Su recorrido transversal de abajo hacia arriba es:
+14->13->12->10->16->1->15->5
+
+sin embargo su top view es:
+1->5->15->16->14
+
+En el mejor de los casos por tener 6 niveles, el top view sera capaz de ver 13 valores del arbol.
+
+```
+template <typename T>
+void TopView(Node<T> *root){
+
+}
+```
+
 
 Problema 2. Dado un BST, transfórmalo en un árbol de suma mayor donde cada nodo contiene la suma de todos los nodos mayores que ese nodo.
 
 ![ejemplo](images/sumTree.png)
+
+```
+template <typename T>
+void PreOrder(Node<T>*root, T &suma){
+    if(root==NULL){
+        return;
+    }
+    std::cout << root->data << std::endl;
+    suma += root->data;
+    PreOrder(root->left,  suma);
+    PreOrder(root->rigth, suma);
+}
+/**
+ 1 2 3 11 15 29 35 40
+ 140-1 140-3 ... 140-140
+*/
+template <typename T>
+void InOrder(Node<T>*root, T &suma/*140*/, T &suma_actual){
+    if(root==NULL){
+        return;
+    }
+    InOrder(root->left,  suma, suma_actual);
+    std::cout << root->data << std::endl;
+    suma_actual += root->data;
+    root->suma = suma - suma_actual;
+    InOrder(root->rigth, suma, suma_actual);
+}
+```
 
 Problema 3. Un heap es una estructura de datos especial basada en un árbol binario completo. En general, los heap pueden ser de dos tipos:
 

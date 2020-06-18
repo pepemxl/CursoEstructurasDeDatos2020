@@ -26,6 +26,18 @@ Dado el nodo `i` tenemos que:
 Deberán implementar las siguientes funciones: 
 - GetMin(): devuelve el elemento raíz del Min-Heap. La complejidad de esta operación es `O(1)`.
 - ExtractMin(): elimina el elemento mínimo de MinHeap. La complejidad  de esta operación es `O(logn)` ya que esta operación necesita mantener la propiedad de almacenamiento dinámica (llamando a heapify()) después de eliminar la raíz.
+    - Primero asignamos obtenemos el valor de la raiz
+    - Asignamos a la raiz el ultimo valor
+
+<img src="images/binaryheap.png" width="45%">
+<img src="images/binaryheap_extract.png" width="45%">
+
+    - Hacemos operaciones para volver a cumplir la propiedad de Heap(Min-Heap en este caso).
+
+<img src="images/binaryheap_heapyfy_01.png" width="45%">
+<img src="images/binaryheap_heapyfy_02.png" width="45%">
+
+
 - DecreaseKey(): disminuye el valor de la clave/llave. La complejidad temporal de esta operación es `O(Logn)`. Si el valor clave/llave de disminución de un nodo es mayor que el padre del nodo, entonces no necesitamos hacer nada. De lo contrario, debemos recorrer hacia arriba para corregir la propiedad de heap no sea violada.
 - Insert(): la inserción de una nueva clave/llave lleva tiempo `O(Logn)`. Agregamos una nueva clave/llave al final del árbol. Si la nueva clave/llave es mayor que su padre, entonces no necesitamos hacer nada. De lo contrario, debemos recorrer hacia arriba para corregir la propiedad del heap no sea violada.
 - Delete(): eliminar una clave/llave también lleva tiempo `O(Logn)`. Reemplazamos la clave/llave que se eliminará con menos infinito(INT_MIN) llamando a `DecreaseKey()`. Después de `DecreaseKey()`, el valor menos infinito debe alcanzar la raíz, por lo que llamamos a `ExtractMin()` para eliminar la clave/llave.
