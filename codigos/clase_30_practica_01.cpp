@@ -108,12 +108,16 @@ public:
     void printAdyacencias();
     int getV();
     Node<T> *getNodeAdyacencias(int u);
+    int contador1;
+    int contador2;
 }; 
 
 template <typename T>
 Graph<T>::Graph(){
     m_iV = 0; 
     m_ptrAdj = NULL; 
+    contador1 = 0;
+    contador2 = 0;
 } 
 
 template <typename T>
@@ -123,6 +127,8 @@ Graph<T>::Graph(int V){
     for(int i = 0;i < V;++i){
         m_ptrAdj[i] = new Node<T>;
     }
+    contador1 = 0;
+    contador2 = 0;
 }
 
 template <typename T>
@@ -205,6 +211,7 @@ void UpdateKeyParent(Graph<T> &g, int u, T *key, bool *mst_flags, int *parent){
         Node<T> *temp = g.getNodeAdyacencias(v);
         temp = temp->next;// el primer nodo es el mismo vertice
         while(temp != NULL){
+            g.contador1++;
             // el nodo no ha sido agregado a MST
             int u_ = temp->data;// nodo vecino de v
             int peso = temp->weight;// peso de v->u_
@@ -231,31 +238,20 @@ void UpdateKeyParent(Graph<T> &g, int u, T *key, bool *mst_flags, int *parent){
 template<typename T>
 void UpdateKeyParent2(Graph<T> &g, int u, T *key, bool *mst_flags, int *parent){
     int V = g.getV();
-    std::cout << "Vecinos de " << u << ":";
-    for(int v = 0; v < V;++v){
-        Node<T> *temp = g.getNodeAdyacencias(v);
-        temp = temp->next;// el primer nodo es el mismo vertice
-        while(temp != NULL){
-            // el nodo no ha sido agregado a MST
-            int u_ = temp->data;// nodo vecino de v
-            int peso = temp->weight;// peso de v->u_
-            if(u_ == u){
-                std::cout << v;
-                if(mst_flags[v] == false){
-                    std::cout << "(No en MST)";
-                    if(peso < key[v]){
-                        parent[v] = u;
-                        key[v] = peso;
-                        std::cout << "(up peso: "<<peso<<")";
-                    }
-                }
-                std::cout << ",";
+    Node<T> *u_list = g.getNodeAdyacencias(u);
+    Node<T> *temp = u_list->next;
+    while( temp != NULL ){
+        g.contador2++;
+        int v = temp->data;
+        int peso = temp->weight;
+        if(mst_flags[v] == false){
+            if(peso < key[v]){
+                parent[v] = u;
+                key[v] = peso;
             }
-            
-            temp = temp->next;
         }
+        temp = temp->next;
     }
-    std::cout << std::endl;
 }
 
 template<typename T>
@@ -311,6 +307,31 @@ void PrimMST(Graph<T> &g){
     delete [] parent;
 }
 
+template <typename T>
+void PrimMST2(Graph<T> &g){
+    int V = g.getV();
+    int *parent = new int[V];
+    T *key = new T[V];
+    bool *mst_flags = new bool[V];
+    for(int i = 0; i < V; ++i){
+        key[i] = (T)INT_MAX;
+        mst_flags[i] = false;
+        parent[i] = -1;
+    }
+    key[0] = (T)0;
+    parent[0] = -1;
+    for(int i = 0; i < V; ++i){
+        int u = MinKey(key, mst_flags, V);
+        std::cout << "Agregamos a:" << u << std::endl;
+        mst_flags[u] = true;
+        UpdateKeyParent2<T>(g, u, key, mst_flags, parent);
+    }
+    PrintMST<T>(g, parent);
+    delete [] mst_flags;
+    delete [] key;
+    delete [] parent;
+}
+
 int main(int argc, char *argv[]){
     Graph<int> g(6); 
     g.addEdge(0, 1, 1); 
@@ -323,6 +344,11 @@ int main(int argc, char *argv[]){
     g.addEdge(3, 5, 2);
     g.addEdge(4, 5, 4);
     //g.printAdyacencias();
+    std::cout <<"Version 1" << std::endl;
     PrimMST<int>(g);
+    std::cout <<"Version 2" << std::endl;
+    PrimMST2<int>(g);
+    std::cout << "Contador1: " << g.contador1 << std::endl;
+    std::cout << "Contador2: " << g.contador2 << std::endl;
     return 0; 
 }

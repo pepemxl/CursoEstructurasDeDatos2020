@@ -100,6 +100,7 @@ class Graph {
 private:
     int m_iV;// Numero de vertices
     Node<T> **m_ptrAdj;// Apuntador a un arreglo que contiene el primer nodo de las listas de adyacencias
+    int *PRIM;
 public: 
     Graph();
     ~Graph();
@@ -240,7 +241,7 @@ void PrimMST(Graph<T> &g){
     bool *mst_flags = new bool[V];
     // Inicializamos todas las llaves a INT_MAX
     for(int i = 0; i < V; ++i){
-        key[i] = (T)INT_MAX;
+        key[i] = (T)INT_MAX;//variable maximo entero en nuestro compilador
         mst_flags[i] = false;
         parent[i] = -1;
     }

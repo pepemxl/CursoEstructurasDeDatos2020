@@ -2,11 +2,11 @@
 
 template <typename T>
 struct Node{
-    T data;
-    T weight;
+    T data;//para guardar el valor del indice
+    T weight;// para guardar el peso o key
     Node<T> *next;
     Node(){
-        this->data = 0;
+        this->data = -1;
         this->weight = 0;
         this->next = NULL;
         //std::cout << "Contructor_default" << std::endl;
@@ -120,6 +120,8 @@ Graph<T>::Graph(int V){
     m_ptrAdj = new Node<T>*[V];
     for(int i = 0;i < V;++i){
         m_ptrAdj[i] = new Node<T>;
+        m_ptrAdj[i]->data = i;
+        m_ptrAdj[i]->weight = 0;
     }
 } 
 
