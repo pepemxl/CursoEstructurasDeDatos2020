@@ -91,8 +91,8 @@ template <typename T>
 void PrintGraph(Node<T> **adj, int n) {
 	for(int i = 0; i < n; ++i) {
 		std::cout << "Lista de vertices adyacentes del nodo " << i << std::endl; 
-        Print(adj[i]);
-        //PrintLetter(adj[i]);
+        //Print(adj[i]);
+        PrintLetter(adj[i]);
 	} 
 } 
 
@@ -266,6 +266,7 @@ int Root(int x, int* &label){
 void Union(int x, int y, int* &label){
     int u = Root(x, label);
     int v = Root(y, label);
+    //u = label[v];
     if(label[u] < label[v]){
         label[v] = label[u];
     }else{
@@ -323,7 +324,7 @@ void KruskalMST(Graph<T> &g){
         }
     }
     // imprimimos lista completa de aristas
-    std::cout << "(peso,arista1, arista2)"<<std::endl;
+    std::cout << "(peso,node1,node2)"<<std::endl;
     for(int i = 0; i < vector_aristas.size();++i){
         std::cout <<"("<< vector_aristas[i].first << ",";
         std::cout << vector_aristas[i].second.first << ",";
@@ -370,7 +371,7 @@ void KruskalMST(Graph<T> &g){
 */
 int main(int argc, char *argv[]){
     Graph<int> g(7); 
-    g.addEdge(0,1,7);
+    g.addEdge(0,1,7);//g.addEdgeL('A','B',7)
     g.addEdge(0,3,5);
     g.addEdge(1,2,8);
     g.addEdge(1,4,7);

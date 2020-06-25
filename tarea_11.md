@@ -19,7 +19,7 @@ Crear un diagrama de su aplicación utilizando draw.io o lucidchart, enviar dich
 
 ## Problema 3. Crear repositorio de github para su proyecto, enviar link de su proyecto en github.
 
-## Problema 4. Crear lista de almenos 5 funcionalidades de su proyecto, con la fecha que estiman tendrá implementada dicha funcionalidad.
+## Problema 4. Crear lista de almenos 5 funcionalidades de su proyecto, con la fecha que estiman tendrán implementada dicha funcionalidad, agreguen cuantas horas van a tardar.
 
 
 Para aquellos que quieran aprender un poco más les recomiendo empezar a leer: 

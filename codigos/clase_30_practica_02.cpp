@@ -239,7 +239,7 @@ void PrimMST(Graph<T> &g, int * &parent, T * &key, bool * &mst_flags){
 // practica
 // crear funcion que calcule la suma de todos los pesos de las aristas
 template <typename T>
-T suma(Graph<T> &g,T* &key){
+T Suma(Graph<T> &g,T* &key){
     int V = g.getV();
     T suma = T(0);
     for(int i = 0; i < V;++i){
@@ -265,6 +265,6 @@ int main(int argc, char *argv[]){
     int *key;
     bool *mst_flags;
     PrimMST<int>(g, parent, key, mst_flags);
-    suma(g,key);
+    Suma(g,key);
     return 0; 
 }

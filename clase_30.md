@@ -43,6 +43,7 @@ void UpdateKeyParent(Graph<T> &g, int u, T *key, bool *mst_flags, int *parent){
         Node<T> *temp = g.getNodeAdyacencias(v);
         temp = temp->next;
         while(temp != NULL){
+            g.contador1++;
             int u_ = temp->data;
             int peso = temp->weight;
             if(u_ == u){
@@ -140,6 +141,8 @@ Marcamos las aristas con menos peso:
 <img src="images/kurskal_03.jpg" width="40%"/>->
 <img src="images/kurskal_04.jpg" width="40%"/>->
 <img src="images/kurskal_05.jpg" width="90%"/>
+
+[codigo](codigos/clase_30_practica_03.cpp)
 
 ## Siguiente clase veremos algoritmos de trayectorias más cortas
 
