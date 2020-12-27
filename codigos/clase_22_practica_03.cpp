@@ -447,7 +447,7 @@ Node<T>* RightLeftRotate(Node<T> *z){
 
 int main(int argc, char *argv[]){
     Node<int> *root = NULL;
-    int pre[] = {20, 10, 5, 15, 30};// supongamos que este es su preorden
+    int pre[] = {50,40,45,60};// supongamos que este es su preorden
     int n = sizeof(pre)/sizeof(pre[0]);// recuerden solo se vale hacer esto si se declaro en el mismo scope
     root = CreateTreeFromArray(pre, n);
     PreOrder(root);
@@ -458,34 +458,30 @@ int main(int argc, char *argv[]){
     PreOrderWithFactor(root);
     std::cout << std::endl;
     // tenemos el creado el arbol
-    // como borramos el nodo 30
-    std::cout << "Borrando nodo 30" << std::endl;
-        /*
-        20
-       /  \
-      10  30
-     /  \
-    5    15
-    */
-    Delete2(root, 30);
-    /*
-        20(2)
-       /  \
-    10(0) NULL
-     /  \
-   5(0) 15(0)
-    */
+    // como borramos el nodo 60
+    std::cout << "Borrando nodo 60" << std::endl;
+    Delete2(root, 60);
     ComputeHeight(root);
     PreOrderWithFactor(root);
     std::cout << std::endl;
-    Node<int> *y_father;
-    Node<int> *y;
-    y = Search(root,10, y_father);
-    std::cout << "Rotamos a la derecha el nodo 20 respecto al nodo 10" << std::endl;
-    root = RightRotate(y_father);
+    Node<int> *z_father;
+    Node<int> *z = Search(root,50, z_father);
+    // Usando LeftRightRotate
+    std::cout << "Hacemos rotacion LR a 50" << std::endl;
+    if(z_father == NULL){
+        root = LeftRightRotate(z);
+    }else{
+        if(z_father->left == z){
+            z_father->left = LeftRightRotate(z);//realmente podria ser hijo derecho
+        }else{
+            z_father->right = LeftRightRotate(z);//realmente podria ser hijo derecho
+        }
+        
+    }
     ComputeHeight(root);
+    PreOrderWithHeight(root);
+    std::cout << std::endl;
     PreOrderWithFactor(root);
     std::cout << std::endl;
-    
     return 0;
 }

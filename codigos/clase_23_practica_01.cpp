@@ -444,48 +444,64 @@ Node<T>* RightLeftRotate(Node<T> *z){
     return x;  
 }  
 
+template <typename T>
+int GetMaxHeight(Node<T> *root){
+    int height = 0;
+    if(root == NULL){
+        return height;
+    }
+    int L_height = GetMaxHeight(root->left);
+    int R_height = GetMaxHeight(root->right);
+    if(L_height > R_height){
+        height = L_height;
+    }else{
+        height = R_height;
+    }
+    height += 1;
+    return height;
+}
+
+template <typename T>
+void PrintLevel(Node<T> *root,int level,int current_level){
+    if(root == NULL){
+        return;
+    }
+    if(current_level == level){
+        std::cout << root->data << " ";
+    }
+    if(current_level < level){
+        current_level += 1;
+        PrintLevel(root->left, level, current_level);
+        PrintLevel(root->right, level, current_level);
+    }
+    return;
+}
+
+template <typename T>
+void LevelOrder(Node<T> *root) {
+    if(root == NULL){
+        return;
+    }
+    int max_height = GetMaxHeight(root);
+    int contador = 0;
+    while(contador < max_height){
+        PrintLevel(root, contador, 0);
+        contador++;
+    }
+}
 
 int main(int argc, char *argv[]){
     Node<int> *root = NULL;
-    int pre[] = {20, 10, 5, 15, 30};// supongamos que este es su preorden
+    int pre[] = {1,2,5,3,4,6};// supongamos que este es su preorden
     int n = sizeof(pre)/sizeof(pre[0]);// recuerden solo se vale hacer esto si se declaro en el mismo scope
     root = CreateTreeFromArray(pre, n);
+    std::cout << "PreOrder  : ";
     PreOrder(root);
     std::cout << std::endl;
-    ComputeHeight(root);
-    PreOrderWithHeight(root);
+    std::cout << "LevelOrder: ";
+    LevelOrder(root);
     std::cout << std::endl;
-    PreOrderWithFactor(root);
+    std::cout << "Expected  : 1 2 5 3 6 4";
     std::cout << std::endl;
-    // tenemos el creado el arbol
-    // como borramos el nodo 30
-    std::cout << "Borrando nodo 30" << std::endl;
-        /*
-        20
-       /  \
-      10  30
-     /  \
-    5    15
-    */
-    Delete2(root, 30);
-    /*
-        20(2)
-       /  \
-    10(0) NULL
-     /  \
-   5(0) 15(0)
-    */
-    ComputeHeight(root);
-    PreOrderWithFactor(root);
-    std::cout << std::endl;
-    Node<int> *y_father;
-    Node<int> *y;
-    y = Search(root,10, y_father);
-    std::cout << "Rotamos a la derecha el nodo 20 respecto al nodo 10" << std::endl;
-    root = RightRotate(y_father);
-    ComputeHeight(root);
-    PreOrderWithFactor(root);
-    std::cout << std::endl;
-    
     return 0;
 }

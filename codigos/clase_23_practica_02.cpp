@@ -1,5 +1,6 @@
 #include <iostream>
 #include <limits.h>
+#include <vector>
 
 template <typename T>
 struct Node {
@@ -261,6 +262,7 @@ Node<T>* CreateTreeFromPreOrder(T pre[], int &preIndex, int key, int low, int hi
     if (preIndex >= n){
         return NULL;  
     } 
+    // std::cout << "preindex " << preIndex << std::endl;
     //El primer nodo en preorden siempre es la raiz, creamos el nodo y aumentamos en uno el indice pre
     Node<T>* root = NULL;
     // Si key esta en el rango (low, high) entonces esparte de dicho subarbol
@@ -444,48 +446,127 @@ Node<T>* RightLeftRotate(Node<T> *z){
     return x;  
 }  
 
+template <typename T>
+int GetMaxHeight(Node<T> *root){
+    int height = 0;
+    if(root == NULL){
+        return height;
+    }
+    int L_height = GetMaxHeight(root->left);
+    int R_height = GetMaxHeight(root->right);
+    if(L_height > R_height){
+        height = L_height + 1;
+    }else{
+        height = R_height + 1;
+    }
+    return height;
+}
+
+template <typename T>
+void PrintLevel(Node<T> *root,int level,int current_level){
+    if(root == NULL){
+        return;
+    }
+    if(current_level == level){
+        std::cout << root->data << " ";
+    }
+    if(current_level < level){
+        current_level += 1;
+        PrintLevel(root->left, level, current_level);
+        PrintLevel(root->right, level, current_level);
+    }
+    return;
+}
+
+template <typename T>
+void LevelOrder(Node<T> *root) {
+    if(root == NULL){
+        return;
+    }
+    int max_height = GetMaxHeight(root);
+    int contador = 0;
+    while(contador < max_height){
+        PrintLevel(root, contador, 0);
+        contador++;
+    }
+}
+
+// only for BST trees
+template <typename T>
+void FindAncestorList(Node<T> *root, int val, std::vector<T> &myvector) {
+    if(root == NULL){
+        return;
+    }
+    Node<T> *temp = root;
+    while(temp !=NULL){
+        myvector.push_back(temp->data);
+        if(temp->data == val){
+            break;
+        }
+        if(temp->data > val){
+            temp = temp->left;
+        }else{
+            temp = temp->right;
+        }
+    }
+}
+
+template <typename T>
+Node<T> *FindNodeVal(Node<T> *root, int val) {
+    if(root == NULL){
+        return NULL;
+    }
+    Node<T> *temp = root;
+    while(temp !=NULL){
+        if(temp->data == val){
+            return temp;
+        }
+        if(temp->data > val){
+            temp = temp->left;
+        }else{
+            temp = temp->right;
+        }
+    }
+    return NULL;
+}
+
+template <typename T>
+Node<T> *LowestCommonAncestor(Node<T> *root, int v1,int v2) {
+     std::vector<T> myvector_val1;
+     std::vector<T> myvector_val2;
+     FindAncestorList(root,v1, myvector_val1);
+     FindAncestorList(root,v2, myvector_val2);
+     int n = myvector_val1.size();
+     int m = myvector_val2.size();
+     /*for(int i = 0; i < n;i++){
+         std::cout << 
+     }*/
+     for(int i = n-1; i >= 0; --i){
+         for(int j = m-1; j >= 0; --j){
+             if(myvector_val1[i] == myvector_val2[j]){
+                return FindNodeVal(root, myvector_val1[i]);
+             }
+         }
+     }
+     return NULL;
+}
 
 int main(int argc, char *argv[]){
     Node<int> *root = NULL;
-    int pre[] = {20, 10, 5, 15, 30};// supongamos que este es su preorden
+    //int pre[] = {4, 2, 1, 3, 7, 6};// supongamos que este es su preorden
+    //int pre[] = {9,7,5,4,3,1,6,8};// caso 2
+    int pre[] = {1,2};// caso 3
     int n = sizeof(pre)/sizeof(pre[0]);// recuerden solo se vale hacer esto si se declaro en el mismo scope
+    std::cout << n << " nodos"<< std::endl;
     root = CreateTreeFromArray(pre, n);
+    std::cout << "PreOrder  : ";
     PreOrder(root);
     std::cout << std::endl;
-    ComputeHeight(root);
-    PreOrderWithHeight(root);
-    std::cout << std::endl;
-    PreOrderWithFactor(root);
-    std::cout << std::endl;
-    // tenemos el creado el arbol
-    // como borramos el nodo 30
-    std::cout << "Borrando nodo 30" << std::endl;
-        /*
-        20
-       /  \
-      10  30
-     /  \
-    5    15
-    */
-    Delete2(root, 30);
-    /*
-        20(2)
-       /  \
-    10(0) NULL
-     /  \
-   5(0) 15(0)
-    */
-    ComputeHeight(root);
-    PreOrderWithFactor(root);
-    std::cout << std::endl;
-    Node<int> *y_father;
-    Node<int> *y;
-    y = Search(root,10, y_father);
-    std::cout << "Rotamos a la derecha el nodo 20 respecto al nodo 10" << std::endl;
-    root = RightRotate(y_father);
-    ComputeHeight(root);
-    PreOrderWithFactor(root);
-    std::cout << std::endl;
-    
+    int val1 = 1;
+    //int val2 = 7;
+    //int val2 = 6;//caso 2
+    int val2 = 2;//caso 3
+    Node<int> *sol = LowestCommonAncestor(root, val1, val2);
+    std::cout << sol->data << std::endl;
     return 0;
 }

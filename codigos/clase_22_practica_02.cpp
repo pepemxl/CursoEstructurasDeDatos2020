@@ -447,7 +447,7 @@ Node<T>* RightLeftRotate(Node<T> *z){
 
 int main(int argc, char *argv[]){
     Node<int> *root = NULL;
-    int pre[] = {20, 10, 5, 15, 30};// supongamos que este es su preorden
+    int pre[] = {50,40,30,10,45,60,55};// supongamos que este es su preorden
     int n = sizeof(pre)/sizeof(pre[0]);// recuerden solo se vale hacer esto si se declaro en el mismo scope
     root = CreateTreeFromArray(pre, n);
     PreOrder(root);
@@ -458,30 +458,16 @@ int main(int argc, char *argv[]){
     PreOrderWithFactor(root);
     std::cout << std::endl;
     // tenemos el creado el arbol
-    // como borramos el nodo 30
-    std::cout << "Borrando nodo 30" << std::endl;
-        /*
-        20
-       /  \
-      10  30
-     /  \
-    5    15
-    */
-    Delete2(root, 30);
-    /*
-        20(2)
-       /  \
-    10(0) NULL
-     /  \
-   5(0) 15(0)
-    */
+    // como borramos el nodo 55
+    std::cout << "Borrando nodo 55" << std::endl;
+    Delete2(root, 55);
     ComputeHeight(root);
     PreOrderWithFactor(root);
     std::cout << std::endl;
     Node<int> *y_father;
     Node<int> *y;
-    y = Search(root,10, y_father);
-    std::cout << "Rotamos a la derecha el nodo 20 respecto al nodo 10" << std::endl;
+    y = Search(root,40, y_father);
+    std::cout << "Rotamos a la derecha el nodo 50 respecto al nodo 40" << std::endl;
     root = RightRotate(y_father);
     ComputeHeight(root);
     PreOrderWithFactor(root);
